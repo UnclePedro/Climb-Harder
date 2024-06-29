@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Goals from "./components/Goals.tsx";
 import Home from "./components/Home.tsx";
+import SeasonNotes from "./components/SeasonNotes.tsx";
 
 function App() {
   const [trainingFocuses, setTrainingFocuses] = useState("Flexibility");
@@ -8,15 +8,26 @@ function App() {
   const [achievements, setAchievements] = useState(
     "Redpointed In Between Dreams"
   );
+  let [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
+
+  const toggleDisplaySeasonNotes = () => {
+    if (!displaySeasonNotes) {
+      setDisplaySeasonNotes(true);
+    } else setDisplaySeasonNotes(false);
+  };
 
   return (
     <>
-      <Home />
-      <Goals
-        trainingFocuses={trainingFocuses}
-        goals={goals}
-        achievements={achievements}
-      />
+      {displaySeasonNotes ? (
+        <SeasonNotes
+          trainingFocuses={trainingFocuses}
+          goals={goals}
+          achievements={achievements}
+          seasonNotesClose={toggleDisplaySeasonNotes}
+        />
+      ) : (
+        <Home seasonNotesOpen={toggleDisplaySeasonNotes} />
+      )}
     </>
   );
 }
