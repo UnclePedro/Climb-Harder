@@ -6,8 +6,7 @@ const SeasonNotes = (props: {
 }) => {
   return (
     <>
-      <div className="">
-        <button onClick={props.seasonNotesClose}>Close</button>
+      <div className="p-6">
         <p className="font-bold pb-2 text-left">Training Focuses</p>
         <textarea className="w-full h-48 border border-gray-300 rounded resize-y">
           {props.trainingFocuses}
@@ -20,6 +19,12 @@ const SeasonNotes = (props: {
         <textarea className="w-full h-48 border border-gray-300 rounded resize-y">
           {props.achievements}
         </textarea>
+        <button
+          className="bg-blue-200 rounded-lg p-2"
+          onClick={props.seasonNotesClose}
+        >
+          Close
+        </button>
       </div>
     </>
   );
