@@ -1,4 +1,9 @@
-const Home = (props: { seasonNotesOpen: any }) => {
+interface Props {
+  seasonNotesOpen: () => void;
+  onEditWorkout: (workoutId: String) => void;
+}
+
+const Home = ({ seasonNotesOpen, onEditWorkout }: Props) => {
   return (
     <>
       <div className="p-6">
@@ -8,9 +13,18 @@ const Home = (props: { seasonNotesOpen: any }) => {
         <h1 className="pt-6 text-lg text-left font-bold">Logbook</h1>
         <button
           className="bg-blue-200 rounded-lg p-2"
-          onClick={props.seasonNotesOpen}
+          onClick={() => seasonNotesOpen()}
         >
           Goals & Achievements
+        </button>
+        <button
+          className="bg-blue-200 rounded-lg p-2"
+          onClick={() => {
+            const newWorkoutId = crypto.randomUUID();
+            onEditWorkout(newWorkoutId);
+          }}
+        >
+          New Workout
         </button>
       </div>
     </>
