@@ -5,31 +5,43 @@ interface Props {
 }
 
 const SeasonNotes = ({ onClose }: Props) => {
-  const [trainingFocuses, setTrainingFocuses] = useState("Flexibility");
-  const [goals, setGoals] = useState("Redpoint LSD");
-  const [achievements, setAchievements] = useState(
-    "Redpointed In Between Dreams"
+  const [trainingFocuses, setTrainingFocuses] = useState(
+    localStorage.getItem("trainingFocuses")
   );
+  const [goals, setGoals] = useState(localStorage.getItem("goals"));
+  const [achievements, setAchievements] = useState(
+    localStorage.getItem("achievements")
+  );
+
   return (
     <>
       <div className="p-6">
         <p className="font-bold pb-2 text-left">Training Focuses</p>
         <textarea
-          onBlur={(element) => setTrainingFocuses(element.target.value)}
+          onChange={(element) => {
+            setTrainingFocuses(element.target.value);
+            localStorage.setItem("trainingFocuses", element.target.value);
+          }}
           className="w-full h-48 border border-gray-300 rounded resize-y"
         >
           {trainingFocuses}
         </textarea>
         <p className="font-bold pb-2 text-left">Goals</p>
         <textarea
-          onBlur={(element) => setGoals(element.target.value)}
+          onChange={(element) => {
+            setGoals(element.target.value);
+            localStorage.setItem("goals", element.target.value);
+          }}
           className="w-full h-48 border border-gray-300 rounded resize-y"
         >
           {goals}
         </textarea>
         <p className="font-bold pb-2 text-left">Achievements</p>
         <textarea
-          onBlur={(element) => setAchievements(element.target.value)}
+          onChange={(element) => {
+            setAchievements(element.target.value);
+            localStorage.setItem("achievements", element.target.value);
+          }}
           className="w-full h-48 border border-gray-300 rounded resize-y"
         >
           {achievements}
