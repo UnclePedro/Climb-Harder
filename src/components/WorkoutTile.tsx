@@ -6,7 +6,7 @@ const WorkoutTile = ({ title }: Props) => {
   return (
     //
     <>
-      <p>Workout: {title}</p>{" "}
+      <p className="bg-slate-500 p-4 m-2">Workout: {title}</p>{" "}
     </>
   );
 };
