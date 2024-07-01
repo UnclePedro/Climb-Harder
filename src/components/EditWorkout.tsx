@@ -32,13 +32,12 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
       date: date,
     };
 
-    if (workouts.some((savedWorkout: any) => savedWorkout.id === workout.id))
-      return;
-    onSave((prevWorkouts: any) => [...prevWorkouts, workout]);
+    onSave((prevWorkouts: Workout[]) => {
+      const updatedWorkouts = [...prevWorkouts, workout];
+      localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
+      return updatedWorkouts;
+    });
 
-    const stringifiedWorkouts = JSON.stringify(workouts);
-
-    localStorage.setItem("workouts", stringifiedWorkouts);
     onClose();
   };
 
