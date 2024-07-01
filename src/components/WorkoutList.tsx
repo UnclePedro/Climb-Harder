@@ -12,13 +12,6 @@ const WorkoutList = ({ workouts }: Props) => {
 
   return (
     <>
-      {workouts.map((workout: any) => (
-        <>
-          <p>state:</p>
-          <WorkoutTile key={workout.id} title={workout.title} />
-        </>
-      ))}
-
       {unstringifiedWorkouts.map((workout: any) => (
         <>
           <p>localStorage:</p>

@@ -4,9 +4,12 @@ import SeasonNotes from "./components/SeasonNotes.tsx";
 import EditWorkout from "./components/EditWorkout.tsx";
 
 function App() {
+  const workoutsLocal = localStorage.getItem("workouts");
+  const unstringifiedWorkouts = JSON.parse(workoutsLocal || "");
+
   const [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
   const [editingWorkoutId, setEditingWorkoutId] = useState<String>();
-  const [workouts, setWorkouts] = useState([]);
+  const [workouts, setWorkouts] = useState(unstringifiedWorkouts);
 
   if (displaySeasonNotes)
     return <SeasonNotes onClose={() => setDisplaySeasonNotes(false)} />;
