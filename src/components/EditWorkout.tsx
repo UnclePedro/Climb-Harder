@@ -21,7 +21,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
   const [duration, setDuration] = useState(localStorage.getItem("length"));
   const [date, setDate] = useState(localStorage.getItem("date"));
 
-  // this seems to work but doesn't use the Workout.ts interface
+  // this seems to work but doesn't use the Workout.ts interface... can't return Null error when I type it as Workout
   const handleSave = () => {
     const workout = {
       id: workoutId,
@@ -36,8 +36,9 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
       return;
     onSave((prevWorkouts: any) => [...prevWorkouts, workout]);
 
-    localStorage.setItem("workouts", workouts);
-    console.log(workouts);
+    const stringifiedWorkouts = JSON.stringify(workouts);
+
+    localStorage.setItem("workouts", stringifiedWorkouts);
     onClose();
   };
 
