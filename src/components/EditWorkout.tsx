@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { Workout } from "../models/Workout.ts";
 
 interface Props {
   onClose: () => void;
   workoutId: String;
+  workouts: any;
+  onSave: any;
 }
 
-const EditWorkout = ({ onClose, workoutId }: Props) => {
+const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
   const [workoutName, setWorkoutName] = useState(
     localStorage.getItem("workoutName")
   );
@@ -15,8 +18,28 @@ const EditWorkout = ({ onClose, workoutId }: Props) => {
   const [details, setDetails] = useState(
     localStorage.getItem("workoutDetails")
   );
-  const [length, setLength] = useState(localStorage.getItem("length"));
+  const [duration, setDuration] = useState(localStorage.getItem("length"));
   const [date, setDate] = useState(localStorage.getItem("date"));
+
+  // this seems to work but doesn't use the Workout.ts interface
+  const handleSave = () => {
+    const workout = {
+      id: workoutId,
+      title: workoutName,
+      type: trainingType,
+      details: details,
+      duration: duration,
+      date: date,
+    };
+
+    if (workouts.some((savedWorkout: any) => savedWorkout.id === workout.id))
+      return;
+    onSave((prevWorkouts: any) => [...prevWorkouts, workout]);
+
+    localStorage.setItem("workouts", workouts);
+    console.log(workouts);
+    onClose();
+  };
 
   return (
     <>
@@ -51,15 +74,15 @@ const EditWorkout = ({ onClose, workoutId }: Props) => {
         >
           {details}
         </textarea>
-        <p className="font-bold text-lg text-left">Length of Session</p>
+        <p className="font-bold text-lg text-left">Duration of Session</p>
         <textarea
           onChange={(element) => {
-            setLength(element.target.value);
-            localStorage.setItem("length", element.target.value);
+            setDuration(element.target.value);
+            localStorage.setItem("duration", element.target.value);
           }}
           className="w-full h-14 border border-gray-300 bg-gray-200 rounded resize-y p-3 mb-5"
         >
-          {length}
+          {duration}
         </textarea>
         <p className="font-bold text-lg text-left">Date</p>
         <textarea
@@ -73,7 +96,7 @@ const EditWorkout = ({ onClose, workoutId }: Props) => {
         </textarea>
         <button
           className="bg-gray-400 font-bold rounded-lg p-3 "
-          onClick={onClose}
+          onClick={handleSave}
         >
           Save
         </button>

@@ -1,9 +1,12 @@
+import WorkoutList from "./WorkoutList";
+
 interface Props {
   seasonNotesOpen: () => void;
   onEditWorkout: (workoutId: String) => void;
+  workouts: any;
 }
 
-const Home = ({ seasonNotesOpen, onEditWorkout }: Props) => {
+const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
   return (
     <>
       <div className="p-6 font-roboto">
@@ -37,6 +40,7 @@ const Home = ({ seasonNotesOpen, onEditWorkout }: Props) => {
           Goals & Achievements
         </button>
         <p className="font-medium text-lg mt-3">All Workouts</p>
+        <WorkoutList workouts={workouts} />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-interface Workout {
+export interface Workout {
   id: String;
   title: String;
   type: WorkoutType;
