@@ -16,39 +16,43 @@ const SeasonNotes = ({ onClose }: Props) => {
   return (
     <>
       <div className="p-6 font-roboto">
-        <p className="font-bold pb-2 text-left">Training Focuses</p>
+        <button
+          className="font-medium text-xl rounded-full w-10 p-2 ml-80"
+          onClick={onClose}
+        >
+          X
+        </button>
+        <p className="font-bold text-lg text-left">Training Focuses</p>
+
         <textarea
           onChange={(element) => {
             setTrainingFocuses(element.target.value);
             localStorage.setItem("trainingFocuses", element.target.value);
           }}
-          className="w-full h-48 border border-gray-300 rounded resize-y"
+          className="w-full h-48 border border-gray-300 bg-gray-200 rounded resize-y p-3 mb-5"
         >
           {trainingFocuses}
         </textarea>
-        <p className="font-bold pb-2 text-left">Goals</p>
+        <p className="font-bold text-lg text-left">Goals</p>
         <textarea
           onChange={(element) => {
             setGoals(element.target.value);
             localStorage.setItem("goals", element.target.value);
           }}
-          className="w-full h-48 border border-gray-300 rounded resize-y"
+          className="w-full h-48 border border-gray-300 bg-gray-200 rounded resize-y p-3 mb-5"
         >
           {goals}
         </textarea>
-        <p className="font-bold pb-2 text-left">Achievements</p>
+        <p className="font-bold text-lg text-left">Achievements</p>
         <textarea
           onChange={(element) => {
             setAchievements(element.target.value);
             localStorage.setItem("achievements", element.target.value);
           }}
-          className="w-full h-48 border border-gray-300 rounded resize-y"
+          className="w-full h-48 border border-gray-300 bg-gray-200 rounded resize-y p-3 mb-5"
         >
           {achievements}
         </textarea>
-        <button className="bg-blue-200 rounded-lg p-2" onClick={onClose}>
-          Close
-        </button>
       </div>
     </>
   );
