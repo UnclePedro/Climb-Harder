@@ -23,7 +23,7 @@ function App() {
         seasonNotesOpen={() => setDisplaySeasonNotes(true)}
         onEditWorkout={(workoutId) => setEditingWorkoutId(workoutId)}
       />
-      <p>editing workout id: {editingWorkoutId}</p>
+      {/* <p>editing workout id: {editingWorkoutId}</p> */}
     </>
   );
 }

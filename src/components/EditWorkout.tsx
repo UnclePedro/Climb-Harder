@@ -20,7 +20,7 @@ const EditWorkout = ({ onClose, workoutId }: Props) => {
 
   return (
     <>
-      <div className="p-6">
+      <div className="p-6 font-roboto">
         {workoutId}
         <p className="font-bold pb-2 text-left">Workout Name</p>
         <textarea

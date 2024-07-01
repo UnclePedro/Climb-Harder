@@ -15,7 +15,7 @@ const SeasonNotes = ({ onClose }: Props) => {
 
   return (
     <>
-      <div className="p-6">
+      <div className="p-6 font-roboto">
         <p className="font-bold pb-2 text-left">Training Focuses</p>
         <textarea
           onChange={(element) => {
