@@ -43,14 +43,23 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
 
   return (
     <>
-      <div className="p-6 mt-12 font-roboto">
+      <div className="p-6 font-roboto">
+        <div className="flex ml-20">
+          <button
+            className="font-medium text-xl rounded-full w-10 p-2 ml-80"
+            onClick={onClose}
+          >
+            X
+          </button>
+        </div>
+
         <p className="font-bold text-lg text-left">Workout Name</p>
         <textarea
           onChange={(element) => {
             setWorkoutName(element.target.value);
             localStorage.setItem("workoutName", element.target.value);
           }}
-          className="w-full h-14 border border-gray-300 bg-gray-200 rounded p-3 mb-5"
+          className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3 mb-5"
         >
           {workoutName}
         </textarea>
@@ -60,7 +69,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             setTrainingType(element.target.value);
             localStorage.setItem("trainingType", element.target.value);
           }}
-          className="w-full h-14 border border-gray-300 bg-gray-200 rounded resize-y p-3 mb-5"
+          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
         >
           {trainingType}
         </textarea>
@@ -70,7 +79,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             setDetails(element.target.value);
             localStorage.setItem("workoutDetails", element.target.value);
           }}
-          className="w-full h-48 border border-gray-300 bg-gray-200 rounded resize-y p-3 mb-5"
+          className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
         >
           {details}
         </textarea>
@@ -80,7 +89,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             setDuration(element.target.value);
             localStorage.setItem("duration", element.target.value);
           }}
-          className="w-full h-14 border border-gray-300 bg-gray-200 rounded resize-y p-3 mb-5"
+          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
         >
           {duration}
         </textarea>
@@ -90,12 +99,12 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             setDate(element.target.value);
             localStorage.setItem("date", element.target.value);
           }}
-          className="w-full h-14 border border-gray-300 bg-gray-200 rounded resize-y p-3 mb-5"
+          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
         >
           {date}
         </textarea>
         <button
-          className="bg-gray-400 font-bold rounded-lg p-3 "
+          className="bg-amber-600 font-bold rounded-lg p-3 "
           onClick={handleSave}
         >
           Save

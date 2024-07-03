@@ -1,4 +1,5 @@
 import WorkoutTile from "./WorkoutTile";
+import { Fade } from "react-awesome-reveal";
 
 interface Props {
   workouts: any;
@@ -12,12 +13,22 @@ const WorkoutList = ({ workouts }: Props) => {
 
   return (
     <>
-      {unstringifiedWorkouts.map((workout: any) => (
-        <>
-          <p>localStorage:</p>
-          <WorkoutTile key={workout.id} title={workout.title} />
-        </>
-      ))}
+      <Fade>
+        <div className="bg-amber-200 bg-opacity-65 rounded-lg">
+          {unstringifiedWorkouts.map((workout: any) => (
+            <>
+              <button className="m-2">
+                <WorkoutTile
+                  key={workout.id}
+                  title={workout.title}
+                  date={workout.date}
+                  id={workout.id}
+                />
+              </button>
+            </>
+          ))}
+        </div>
+      </Fade>
     </>
   );
 };
