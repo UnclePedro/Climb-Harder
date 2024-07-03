@@ -40,7 +40,7 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
           Goals & Achievements
         </button>
         <p className="font-medium text-lg mt-3">All Workouts</p>
-        <WorkoutList workouts={workouts} />
+        <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
       </div>
     </>
   );

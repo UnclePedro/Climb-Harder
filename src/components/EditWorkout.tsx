@@ -9,17 +9,22 @@ interface Props {
 }
 
 const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
-  const [workoutName, setWorkoutName] = useState(
-    localStorage.getItem("workoutName")
-  );
-  const [trainingType, setTrainingType] = useState(
-    localStorage.getItem("trainingType")
-  );
-  const [details, setDetails] = useState(
-    localStorage.getItem("workoutDetails")
-  );
-  const [duration, setDuration] = useState(localStorage.getItem("length"));
-  const [date, setDate] = useState(localStorage.getItem("date"));
+  // If the workoutId matches an existing workoutId from the workouts array, use that workout data to fill the form. Or, set data to empty strings for a blank form.
+  const workoutToEdit = workouts.find(
+    (workout: any) => workout.id === workoutId
+  ) || {
+    title: "",
+    type: "",
+    details: "",
+    duration: "",
+    date: "",
+  };
+
+  const [workoutName, setWorkoutName] = useState(workoutToEdit.title);
+  const [trainingType, setTrainingType] = useState(workoutToEdit.type);
+  const [details, setDetails] = useState(workoutToEdit.details);
+  const [duration, setDuration] = useState(workoutToEdit.duration);
+  const [date, setDate] = useState(workoutToEdit.date);
 
   // this seems to work but doesn't use the Workout.ts interface... can't return Null error when I type it as Workout
   const handleSave = () => {

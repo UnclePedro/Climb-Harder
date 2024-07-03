@@ -12,7 +12,7 @@ const WorkoutTile = ({ title, date, id }: Props) => {
       <div className="bg-amber-500 p-4 m-2 rounded-lg">
         <p className="text-sm">{date}</p>
         <p className="font-bold">{title}</p>
-        <button>{id}</button>
+        <p>{id}</p>
       </div>
     </>
   );
