@@ -1,3 +1,4 @@
+import QuoteGenerator from "./QuoteGenerator";
 import WorkoutList from "./WorkoutList";
 
 interface Props {
@@ -11,9 +12,7 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
     <>
       <div className="p-6 font-roboto lg:p-12">
         <div className="flex">
-          <p className="text-sm text-left w-72">
-            “The man who has no imagination has no wings.” – Muhammad Ali
-          </p>
+          <QuoteGenerator />
           <button className="bg-amber-600 font-medium rounded-full w-10 p-2 ml-10">
             ///
           </button>

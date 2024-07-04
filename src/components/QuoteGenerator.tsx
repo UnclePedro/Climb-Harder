@@ -183,7 +183,16 @@ const QuoteGenerator = () => {
     },
   ];
 
-  return <></>;
+  const randomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * quotesArray.length);
+    return `${quotesArray[randomIndex].quote} - '${quotesArray[randomIndex].author}'`;
+  };
+
+  return (
+    <>
+      <p className="text-sm w-42">{randomQuote()}</p>
+    </>
+  );
 };
 
 export default QuoteGenerator;
