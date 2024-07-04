@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const QuoteGenerator = () => {
   const quotesArray = [
     {
@@ -153,7 +155,6 @@ const QuoteGenerator = () => {
       quote: "Action is the foundational key to all success.",
       author: "Pablo Picasso",
     },
-    { quote: "You are enough just as you are.", author: "Meghan Markle" },
     {
       quote:
         "The only way to achieve the impossible is to believe it is possible.",
@@ -183,14 +184,19 @@ const QuoteGenerator = () => {
     },
   ];
 
-  const randomQuote = () => {
+  const getRandomQuote = () => {
     const randomIndex = Math.floor(Math.random() * quotesArray.length);
-    return `${quotesArray[randomIndex].quote} - '${quotesArray[randomIndex].author}'`;
+    return quotesArray[randomIndex];
+    setQuote(getRandomQuote());
   };
+
+  const [quote, setQuote] = useState(getRandomQuote);
 
   return (
     <>
-      <p className="text-sm w-42">{randomQuote()}</p>
+      <p className="text-sm w-42">
+        {quote.quote} - '{quote.author}'
+      </p>
     </>
   );
 };
