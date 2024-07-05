@@ -16,15 +16,15 @@ const SeasonNotes = ({ onClose }: Props) => {
   return (
     <>
       <div className="p-6 font-roboto">
-        <div className="flex ml-20">
+        {/* <div className="flex ml-20">
           <button
-            className="font-medium text-xl rounded-full w-10 p-2 ml-80"
+            className="font-medium text-xl rounded-full w-10 h-10 ml-64 bg-amber-500"
             onClick={onClose}
           >
-            X
+            x
           </button>
-        </div>
-        <p className="font-bold text-lg text-left">Training Focuses</p>
+        </div> */}
+        <p className="font-bold text-lg text-left pt-6">Training Focuses</p>
 
         <textarea
           onChange={(element) => {
@@ -55,6 +55,12 @@ const SeasonNotes = ({ onClose }: Props) => {
         >
           {achievements}
         </textarea>
+        <button
+          className="bg-amber-500 font-bold rounded-lg p-3 "
+          onClick={onClose}
+        >
+          Save
+        </button>
       </div>
     </>
   );
