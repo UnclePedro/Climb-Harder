@@ -11,7 +11,7 @@ interface Props {
 const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
   // If the workoutId matches an existing workoutId from the workouts array, use that workout data to fill the form. Or, set data to empty strings for a blank form.
   const workoutToEdit = workouts.find(
-    (workout: any) => workout.id === workoutId
+    (workout: Workout) => workout.id === workoutId
   ) || {
     id: workoutId,
     title: "",
@@ -60,6 +60,16 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
 
     onClose();
   };
+
+  const handleDelete = () => {
+    workouts.pop(workoutId);
+    localStorage.setItem("workouts", JSON.stringify(workouts));
+    onClose();
+  };
+
+  const isExistingWorkout = workouts.some(
+    (existingWorkout: Workout) => existingWorkout.id === workoutId
+  );
 
   return (
     <>
@@ -129,6 +139,17 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
         >
           Save
         </button>
+
+        {isExistingWorkout ? (
+          <button
+            className="bg-amber-500 font-bold rounded-lg p-3 mx-4 "
+            onClick={handleDelete}
+          >
+            Delete
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
