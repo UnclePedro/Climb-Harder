@@ -24,14 +24,14 @@ const SeasonNotes = ({ onClose }: Props) => {
             x
           </button>
         </div> */}
-        <p className="font-bold text-lg text-left pt-6">Training Focuses</p>
+        <p className="font-bold text-lg text-left pt-3">Training Focuses</p>
 
         <textarea
           onChange={(element) => {
             setTrainingFocuses(element.target.value);
             localStorage.setItem("trainingFocuses", element.target.value);
           }}
-          className="w-full h-40 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-40 border border-gray-300 bg-amber-200 rounded resize-y p-3"
         >
           {trainingFocuses}
         </textarea>
@@ -41,7 +41,7 @@ const SeasonNotes = ({ onClose }: Props) => {
             setGoals(element.target.value);
             localStorage.setItem("goals", element.target.value);
           }}
-          className="w-full h-40 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-40 border border-gray-300 bg-amber-200 rounded resize-y p-3"
         >
           {goals}
         </textarea>
@@ -51,12 +51,12 @@ const SeasonNotes = ({ onClose }: Props) => {
             setAchievements(element.target.value);
             localStorage.setItem("achievements", element.target.value);
           }}
-          className="w-full h-40 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-40 border border-gray-300 bg-amber-200 rounded resize-y p-3"
         >
           {achievements}
         </textarea>
         <button
-          className="bg-amber-500 font-bold rounded-lg p-3 "
+          className="bg-amber-500 font-bold rounded-lg p-3 mt-2 "
           onClick={onClose}
         >
           Save
