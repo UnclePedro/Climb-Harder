@@ -31,7 +31,7 @@ const SeasonNotes = ({ onClose }: Props) => {
             setTrainingFocuses(element.target.value);
             localStorage.setItem("trainingFocuses", element.target.value);
           }}
-          className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-40 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
         >
           {trainingFocuses}
         </textarea>
@@ -41,7 +41,7 @@ const SeasonNotes = ({ onClose }: Props) => {
             setGoals(element.target.value);
             localStorage.setItem("goals", element.target.value);
           }}
-          className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-40 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
         >
           {goals}
         </textarea>
@@ -51,7 +51,7 @@ const SeasonNotes = ({ onClose }: Props) => {
             setAchievements(element.target.value);
             localStorage.setItem("achievements", element.target.value);
           }}
-          className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-40 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
         >
           {achievements}
         </textarea>

@@ -89,7 +89,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             setWorkoutName(element.target.value);
             localStorage.setItem("workoutName", element.target.value);
           }}
-          className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3 mb-5"
+          className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
         >
           {workoutName}
         </textarea>
@@ -99,7 +99,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             setTrainingType(element.target.value);
             localStorage.setItem("trainingType", element.target.value);
           }}
-          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
         >
           {trainingType}
         </textarea>
@@ -109,7 +109,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             setDetails(element.target.value);
             localStorage.setItem("workoutDetails", element.target.value);
           }}
-          className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3"
         >
           {details}
         </textarea>
@@ -119,7 +119,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             setDuration(element.target.value);
             localStorage.setItem("duration", element.target.value);
           }}
-          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
         >
           {duration}
         </textarea>
@@ -129,12 +129,12 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             setDate(element.target.value);
             localStorage.setItem("date", element.target.value);
           }}
-          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3 mb-5"
+          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
         >
           {date}
         </textarea>
         <button
-          className="bg-amber-500 font-bold rounded-lg p-3 "
+          className="bg-amber-500 font-bold rounded-lg p-3 mt-2 "
           onClick={handleSave}
         >
           Save
