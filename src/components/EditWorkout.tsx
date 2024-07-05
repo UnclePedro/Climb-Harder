@@ -3,15 +3,15 @@ import { Workout } from "../models/Workout.ts";
 
 interface Props {
   onClose: () => void;
-  workoutId: String;
+  workoutId: String; // Loads either a new workoutId if one doesn't exist, or uses the workoutId of existing workout
   workouts: any;
   onSave: any;
 }
 
 const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
-  // If the workoutId matches an existing workoutId from the workouts array, use that workout data to fill the form. Or, set data to empty strings for a blank form.
+  // If the workoutId matches an existingWorkout.id from the workouts array, fill form state with that data. Or, set state to empty strings for a blank form
   const workoutToEdit = workouts.find(
-    (workout: Workout) => workout.id === workoutId
+    (existingWorkout: Workout) => existingWorkout.id === workoutId
   ) || {
     id: workoutId,
     title: "",
@@ -44,8 +44,9 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
       );
 
       let updatedWorkouts;
+
       if (existingWorkout) {
-        // If the workout exists, update it
+        // savedWorkout represents individual workout prevWorkouts array. The ternary operator updates the specific workout object if its id matches the workout.id; otherwise, it keeps the workout object unchanged.
         updatedWorkouts = prevWorkouts.map((savedWorkout: Workout) =>
           savedWorkout.id === workout.id ? workout : savedWorkout
         );
@@ -67,6 +68,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
     onClose();
   };
 
+  // Check if workout exists. If true, delete button is rendered
   const isExistingWorkout = workouts.some(
     (existingWorkout: Workout) => existingWorkout.id === workoutId
   );
