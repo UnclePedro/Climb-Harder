@@ -4,7 +4,10 @@ import SeasonNotes from "./components/SeasonNotes.tsx";
 import EditWorkout from "./components/EditWorkout.tsx";
 
 function App() {
-  const workoutsLocal = localStorage.getItem("workouts");
+  // If previous user, get existing workouts data. If new user, set empty workouts array.
+  const workoutsLocal =
+    localStorage.getItem("workouts") || localStorage.setItem("workouts", "[]");
+
   const unstringifiedWorkouts = JSON.parse(workoutsLocal || "");
 
   const [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
