@@ -12,8 +12,10 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
     <>
       <div className="p-6 font-roboto lg:p-12">
         <div className="flex">
-          <QuoteGenerator />
-          <button className="bg-amber-600 font-medium rounded-full w-10 p-2 ml-10">
+          <div className="w-72">
+            <QuoteGenerator />
+          </div>
+          <button className="bg-amber-600 font-medium rounded-full w-10 h-10 p-2 ml-14">
             ///
           </button>
         </div>
