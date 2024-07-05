@@ -13,6 +13,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
   const workoutToEdit = workouts.find(
     (workout: any) => workout.id === workoutId
   ) || {
+    id: workoutId,
     title: "",
     type: "",
     details: "",
@@ -26,9 +27,8 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
   const [duration, setDuration] = useState(workoutToEdit.duration);
   const [date, setDate] = useState(workoutToEdit.date);
 
-  // this seems to work but doesn't use the Workout.ts interface... can't return Null error when I type it as Workout
   const handleSave = () => {
-    const workout = {
+    const workout: Workout = {
       id: workoutId,
       title: workoutName,
       type: trainingType,
@@ -38,7 +38,22 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
     };
 
     onSave((prevWorkouts: Workout[]) => {
-      const updatedWorkouts = [...prevWorkouts, workout];
+      // Check if the workout already exists
+      const existingWorkout = prevWorkouts.find(
+        (savedWorkout: Workout) => savedWorkout.id === workout.id
+      );
+
+      let updatedWorkouts;
+      if (existingWorkout) {
+        // If the workout exists, update it
+        updatedWorkouts = prevWorkouts.map((savedWorkout: Workout) =>
+          savedWorkout.id === workout.id ? workout : savedWorkout
+        );
+      } else {
+        // If the workout does not exist, add it
+        updatedWorkouts = [...prevWorkouts, workout];
+      }
+
       localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
       return updatedWorkouts;
     });
