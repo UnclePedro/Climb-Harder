@@ -9,13 +9,16 @@ interface Props {
 }
 
 const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
-  // If the workoutId matches an existingWorkout.id from the workouts array, fill form state with that data. Or, set state to empty strings for a blank form
+  // Used to prefill new workout with last workout details
+  const lastWorkout = workouts[workouts.length - 1] || "";
+
+  // If the workoutId matches an existingWorkout.id from the workouts array, fill form state with that data. Or, set state to previous workout details and empty strings for a blank form
   const workoutToEdit = workouts.find(
     (existingWorkout: Workout) => existingWorkout.id === workoutId
   ) || {
     id: workoutId,
-    name: "",
-    trainingType: "",
+    name: lastWorkout.name,
+    trainingType: lastWorkout.trainingType,
     details: "",
     duration: "",
     date: "",
@@ -63,9 +66,13 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
     onClose();
   };
 
+  // Doesn't update state until refresh... need to be able to return updatedWorkouts and trigger onClose afterwards
   const handleDelete = () => {
-    workouts.pop(workoutId);
-    localStorage.setItem("workouts", JSON.stringify(workouts));
+    const updatedWorkouts = workouts.filter(
+      (existingWorkout: Workout) => existingWorkout.id !== workoutId
+    );
+    localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
+    // return updatedWorkouts;
     onClose();
   };
 
@@ -85,6 +92,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             x
           </button>
         </div>
+        <p>{workoutId}</p>
 
         <p className="font-bold text-lg text-left">Workout Name</p>
         <textarea
