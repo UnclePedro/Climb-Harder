@@ -14,15 +14,15 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
     (existingWorkout: Workout) => existingWorkout.id === workoutId
   ) || {
     id: workoutId,
-    title: "",
-    type: "",
+    name: "",
+    trainingType: "",
     details: "",
     duration: "",
     date: "",
   };
 
-  const [workoutName, setWorkoutName] = useState(workoutToEdit.title);
-  const [trainingType, setTrainingType] = useState(workoutToEdit.type);
+  const [name, setName] = useState(workoutToEdit.name);
+  const [trainingType, setTrainingType] = useState(workoutToEdit.trainingType);
   const [details, setDetails] = useState(workoutToEdit.details);
   const [duration, setDuration] = useState(workoutToEdit.duration);
   const [date, setDate] = useState(workoutToEdit.date);
@@ -30,23 +30,24 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
   const handleSave = () => {
     const workout: Workout = {
       id: workoutId,
-      title: workoutName,
-      type: trainingType,
+      name: name,
+      trainingType: trainingType,
       details: details,
       duration: duration,
       date: date,
     };
 
     onSave((prevWorkouts: Workout[]) => {
-      // Check if the workout already exists
+      // Check if the workout already exists by comparing the live workoutId with the workout array id's
       const existingWorkout = prevWorkouts.find(
         (savedWorkout: Workout) => savedWorkout.id === workout.id
       );
 
+      // Holds array of workouts that reflects any updates made to existing workouts, or recieves new workoutout object
       let updatedWorkouts;
 
       if (existingWorkout) {
-        // savedWorkout represents individual workout prevWorkouts array. The ternary operator updates the specific workout object if its id matches the workout.id; otherwise, it keeps the workout object unchanged.
+        // The ternary operator updates the specific workout object if its id matches an existing workout.id; otherwise, it keeps the workout object unchanged to be added in else statement.
         updatedWorkouts = prevWorkouts.map((savedWorkout: Workout) =>
           savedWorkout.id === workout.id ? workout : savedWorkout
         );
@@ -88,15 +89,31 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
         <p className="font-bold text-lg text-left">Workout Name</p>
         <textarea
           onChange={(element) => {
-            setWorkoutName(element.target.value);
+            setName(element.target.value);
             localStorage.setItem("workoutName", element.target.value);
           }}
           className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
         >
-          {workoutName}
+          {name}
         </textarea>
         <p className="font-bold text-lg text-left">Training Type</p>
-        <textarea
+        <select
+          name="training-type"
+          id="training-type"
+          value={trainingType}
+          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+          onChange={(element) => {
+            setTrainingType(element.target.value);
+            localStorage.setItem("trainingType", element.target.value);
+          }}
+        >
+          <option value="Base Fitness">Base Fitness</option>
+          <option value="Strength">Strength</option>
+          <option value="Power">Power</option>
+          <option value="Power Endurance">Power Endurance</option>
+          <option value="Performance">Performance</option>
+        </select>
+        {/* <textarea
           onChange={(element) => {
             setTrainingType(element.target.value);
             localStorage.setItem("trainingType", element.target.value);
@@ -104,7 +121,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
           className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
         >
           {trainingType}
-        </textarea>
+        </textarea> */}
         <p className="font-bold text-lg text-left">Details</p>
         <textarea
           onChange={(element) => {

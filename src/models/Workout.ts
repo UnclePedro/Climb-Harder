@@ -1,7 +1,7 @@
 export interface Workout {
   id: String;
-  title: String;
-  type: WorkoutType;
+  name: String;
+  trainingType: WorkoutType;
   details: String;
   duration: Number; // recieved as minutes
   date: Date;

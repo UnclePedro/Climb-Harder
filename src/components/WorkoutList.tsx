@@ -20,7 +20,8 @@ const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
               }}
             >
               <WorkoutTile
-                title={workout.title}
+                name={workout.name}
+                trainingType={workout.trainingType}
                 date={workout.date}
                 id={workout.id}
               />
