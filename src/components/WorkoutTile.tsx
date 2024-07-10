@@ -1,21 +1,31 @@
+import { TrainingType } from "../models/Workout";
+
 interface Props {
   name: String;
-  trainingType: String;
+  trainingType: TrainingType;
   date: String;
   id: String;
 }
 
-const WorkoutTile = ({ name, trainingType, date, id }: Props) => {
+const WorkoutTile = ({ name, trainingType, date }: Props) => {
+  // Object using TrainingType as key paired to string value to be inserted to tailwind as template literal
+  const colors = {
+    [TrainingType.Base]: "bg-blue-500",
+    [TrainingType.Strength]: "bg-red-500",
+    [TrainingType.Power]: "bg-yellow-500",
+    [TrainingType.PowerEndurance]: "bg-green-500",
+    [TrainingType.Performance]: "bg-pink-500",
+    default: "bg-white",
+  };
+
   return (
-    // Need to make use of Workout interface so I can conditionally render bg color based on workout type
-    <>
-      <div className="bg-amber-500 p-4 m-2 rounded-lg">
-        <p className="text-sm">{date}</p>
-        <p className="font-bold">{name}</p>
-        <p className="font-bold">{trainingType}</p>
-        {/* <p>{id}</p> */}
-      </div>
-    </>
+    <div
+      className={`${colors[trainingType] || colors.default} p-4 m-1 rounded-lg`}
+    >
+      <p className="text-xs">{date}</p>
+      <p className="font-bold text-lg">{name}</p>
+      <p className="">{trainingType}</p>
+    </div>
   );
 };
 

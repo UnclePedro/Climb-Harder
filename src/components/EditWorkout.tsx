@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Workout } from "../models/Workout.ts";
+import { Workout, TrainingType } from "../models/Workout.ts";
 
 interface Props {
   onClose: () => void;
@@ -107,21 +107,13 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             localStorage.setItem("trainingType", element.target.value);
           }}
         >
-          <option value="Base Fitness">Base Fitness</option>
-          <option value="Strength">Strength</option>
-          <option value="Power">Power</option>
-          <option value="Power Endurance">Power Endurance</option>
-          <option value="Performance">Performance</option>
+          <option value={TrainingType.Base}>Base Fitness</option>
+          <option value={TrainingType.Strength}>Strength</option>
+          <option value={TrainingType.Power}>Power</option>
+          <option value={TrainingType.PowerEndurance}>Power Endurance</option>
+          <option value={TrainingType.Performance}>Performance</option>
         </select>
-        {/* <textarea
-          onChange={(element) => {
-            setTrainingType(element.target.value);
-            localStorage.setItem("trainingType", element.target.value);
-          }}
-          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-        >
-          {trainingType}
-        </textarea> */}
+
         <p className="font-bold text-lg text-left">Details</p>
         <textarea
           onChange={(element) => {

@@ -1,16 +1,16 @@
 export interface Workout {
   id: String;
   name: String;
-  trainingType: WorkoutType;
+  trainingType: TrainingType;
   details: String;
   duration: Number; // recieved as minutes
   date: Date;
 }
 
-enum WorkoutType {
-  Base,
-  Strength,
-  Power,
-  PowerEndurance,
-  Performance,
+export enum TrainingType {
+  Base = "Base Fitness",
+  Strength = "Strength",
+  Power = "Power",
+  PowerEndurance = "Power Endurance",
+  Performance = "Performance",
 }
