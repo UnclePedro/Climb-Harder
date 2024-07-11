@@ -18,7 +18,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
   ) || {
     id: workoutId,
     name: lastWorkout.name,
-    trainingType: lastWorkout.trainingType,
+    trainingType: lastWorkout.trainingType || TrainingType.Base,
     details: "",
     duration: "",
     date: "",
@@ -92,7 +92,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
             x
           </button>
         </div>
-        <p>{workoutId}</p>
+        {/* <p>{workoutId}</p> */}
 
         <p className="font-bold text-lg text-left">Workout Name</p>
         <textarea

@@ -25,7 +25,7 @@ const WorkoutTile = ({ name, trainingType, date, id }: Props) => {
       <p className="text-xs">{date}</p>
       <p className="font-bold text-lg">{name}</p>
       <p className="">{trainingType}</p>
-      <p className="">{id}</p>
+      {/* <p className="">{id}</p> */}
     </div>
   );
 };
