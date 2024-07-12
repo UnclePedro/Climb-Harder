@@ -84,90 +84,91 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
   return (
     <>
       <div className="p-6 font-roboto">
-        <div className="flex ml-20">
+        <div className="flex justify-end mr-6">
           <button
-            className="font-medium text-xl rounded-full w-10 h-10 ml-64 bg-amber-500 "
+            className="font-medium text-xl rounded-full w-10 h-10 bg-amber-500 "
             onClick={onClose}
           >
             x
           </button>
         </div>
-
-        <p className="font-bold text-lg text-left">Workout Name</p>
-        <textarea
-          onChange={(element) => {
-            setName(element.target.value);
-            localStorage.setItem("workoutName", element.target.value);
-          }}
-          className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
-        >
-          {name}
-        </textarea>
-        <p className="font-bold text-lg text-left">Training Type</p>
-        <select
-          name="training-type"
-          id="training-type"
-          value={trainingType}
-          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-          onChange={(element) => {
-            setTrainingType(element.target.value);
-            localStorage.setItem("trainingType", element.target.value);
-          }}
-        >
-          <option value={TrainingType.Base}>Base Fitness</option>
-          <option value={TrainingType.Strength}>Strength</option>
-          <option value={TrainingType.Power}>Power</option>
-          <option value={TrainingType.PowerEndurance}>Power Endurance</option>
-          <option value={TrainingType.Performance}>Performance</option>
-        </select>
-
-        <p className="font-bold text-lg text-left">Details</p>
-        <textarea
-          onChange={(element) => {
-            setDetails(element.target.value);
-            localStorage.setItem("workoutDetails", element.target.value);
-          }}
-          className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-        >
-          {details}
-        </textarea>
-        <p className="font-bold text-lg text-left">Duration of Session</p>
-        <textarea
-          onChange={(element) => {
-            setDuration(element.target.value);
-            localStorage.setItem("duration", element.target.value);
-          }}
-          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-        >
-          {duration}
-        </textarea>
-        <p className="font-bold text-lg text-left">Date</p>
-        <textarea
-          onChange={(element) => {
-            setDate(element.target.value);
-            localStorage.setItem("date", element.target.value);
-          }}
-          className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-        >
-          {date}
-        </textarea>
-        <button
-          className="bg-amber-500 font-bold rounded-lg p-3 mt-2 "
-          onClick={handleSave}
-        >
-          Save
-        </button>
-
-        {isExistingWorkout ? (
-          <button
-            className="bg-amber-500 font-bold rounded-lg p-3 mx-4 "
-            onClick={handleDelete}
+        <div className="">
+          <p className="font-bold text-lg text-left">Workout Name</p>
+          <textarea
+            onChange={(element) => {
+              setName(element.target.value);
+              localStorage.setItem("workoutName", element.target.value);
+            }}
+            className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
           >
-            Delete
+            {name}
+          </textarea>
+          <p className="font-bold text-lg text-left">Training Type</p>
+          <select
+            name="training-type"
+            id="training-type"
+            value={trainingType}
+            className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+            onChange={(element) => {
+              setTrainingType(element.target.value);
+              localStorage.setItem("trainingType", element.target.value);
+            }}
+          >
+            <option value={TrainingType.Base}>Base Fitness</option>
+            <option value={TrainingType.Strength}>Strength</option>
+            <option value={TrainingType.Power}>Power</option>
+            <option value={TrainingType.PowerEndurance}>Power Endurance</option>
+            <option value={TrainingType.Performance}>Performance</option>
+          </select>
+
+          <p className="font-bold text-lg text-left">Details</p>
+          <textarea
+            onChange={(element) => {
+              setDetails(element.target.value);
+              localStorage.setItem("workoutDetails", element.target.value);
+            }}
+            className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+          >
+            {details}
+          </textarea>
+          <p className="font-bold text-lg text-left">Duration of Session</p>
+          <textarea
+            onChange={(element) => {
+              setDuration(element.target.value);
+              localStorage.setItem("duration", element.target.value);
+            }}
+            className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+          >
+            {duration}
+          </textarea>
+          <p className="font-bold text-lg text-left">Date</p>
+          <textarea
+            onChange={(element) => {
+              setDate(element.target.value);
+              localStorage.setItem("date", element.target.value);
+            }}
+            className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+          >
+            {date}
+          </textarea>
+          <button
+            className="bg-amber-500 font-bold rounded-lg p-3 mt-2 "
+            onClick={handleSave}
+          >
+            Save
           </button>
-        ) : (
-          <></>
-        )}
+
+          {isExistingWorkout ? (
+            <button
+              className="bg-amber-500 font-bold rounded-lg p-3 mx-4 "
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </>
   );
