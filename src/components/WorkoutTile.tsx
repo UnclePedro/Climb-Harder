@@ -7,7 +7,7 @@ interface Props {
   id: String;
 }
 
-const WorkoutTile = ({ name, trainingType, date, id }: Props) => {
+const WorkoutTile = ({ name, trainingType, date }: Props) => {
   // Object using TrainingType as key paired to string value to be inserted to tailwind as template literal
   const colors = {
     [TrainingType.Base]: "bg-blue-500",
@@ -25,7 +25,6 @@ const WorkoutTile = ({ name, trainingType, date, id }: Props) => {
       <p className="text-xs">{date}</p>
       <p className="font-bold text-lg">{name}</p>
       <p className="">{trainingType}</p>
-      {/* <p className="">{id}</p> */}
     </div>
   );
 };
