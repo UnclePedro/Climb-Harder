@@ -6,9 +6,16 @@ interface Props {
   workoutId: String; // Loads either a new workoutId if one doesn't exist, or uses the workoutId of existing workout
   workouts: any;
   onSave: any;
+  onDelete: any;
 }
 
-const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
+const EditWorkout = ({
+  onClose,
+  workoutId,
+  onSave,
+  workouts,
+  onDelete,
+}: Props) => {
   // Used to prefill new workout with last workout details
   const lastWorkout = workouts[workouts.length - 1] || "";
 
@@ -41,7 +48,7 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
     };
 
     onSave((prevWorkouts: Workout[]) => {
-      // Check if the workout already exists by comparing the live workoutId with the workout array id's
+      // Check if the workout already exists by comparing the opened/editing workoutId with the workout array id's
       const existingWorkout = prevWorkouts.find(
         (savedWorkout: Workout) => savedWorkout.id === workout.id
       );
@@ -66,13 +73,14 @@ const EditWorkout = ({ onClose, workoutId, onSave, workouts }: Props) => {
     onClose();
   };
 
-  // Doesn't update state until refresh... need to be able to return updatedWorkouts and trigger onClose afterwards
   const handleDelete = () => {
-    const updatedWorkouts = workouts.filter(
-      (existingWorkout: Workout) => existingWorkout.id !== workoutId
-    );
-    localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
-    // return updatedWorkouts;
+    onDelete((prevWorkouts: Workout[]) => {
+      const updatedWorkouts = prevWorkouts.filter(
+        (existingWorkout: Workout) => existingWorkout.id !== workoutId
+      );
+      localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
+      return updatedWorkouts;
+    });
     onClose();
   };
 

@@ -23,6 +23,7 @@ function App() {
         workoutId={editingWorkoutId}
         workouts={workouts}
         onSave={setWorkouts}
+        onDelete={setWorkouts}
       />
     );
 
