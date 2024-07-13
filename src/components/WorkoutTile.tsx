@@ -12,7 +12,7 @@ const WorkoutTile = ({ name, trainingType, date }: Props) => {
   const colors = {
     [TrainingType.Base]: "bg-blue-500",
     [TrainingType.Strength]: "bg-red-500",
-    [TrainingType.Power]: "bg-yellow-500",
+    [TrainingType.Power]: "bg-purple-400",
     [TrainingType.PowerEndurance]: "bg-green-500",
     [TrainingType.Performance]: "bg-pink-500",
     default: "bg-white",
@@ -20,7 +20,9 @@ const WorkoutTile = ({ name, trainingType, date }: Props) => {
 
   return (
     <div
-      className={`${colors[trainingType] || colors.default} p-4 m-1 rounded-lg`}
+      className={`${
+        colors[trainingType] || colors.default
+      } p-4 m-1 rounded-lg bg-`}
     >
       <p className="text-xs">{date}</p>
       <p className="font-bold text-lg">{name}</p>

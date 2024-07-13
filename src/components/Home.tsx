@@ -25,7 +25,7 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
             Training Logbook
           </h1>
           <button
-            className="bg-amber-600 font-medium rounded-full w-10 h-10 ml-6 mt-5"
+            className="bg-amber-500 font-medium rounded-full w-10 h-10 ml-6 mt-5"
             onClick={() => {
               const newWorkoutId = crypto.randomUUID();
               onEditWorkout(newWorkoutId);
@@ -35,7 +35,7 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
           </button>
         </div>
         <button
-          className="bg-amber-600 font-medium rounded-lg px-2 py-1 mt-3"
+          className="bg-amber-500 font-medium rounded-lg px-2 py-1 mt-3"
           onClick={() => seasonNotesOpen()}
         >
           Goals & Achievements
