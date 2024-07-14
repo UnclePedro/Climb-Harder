@@ -1,10 +1,11 @@
+import { Workout } from "../models/Workout";
 import QuoteGenerator from "./QuoteGenerator";
 import WorkoutList from "./WorkoutList";
 
 interface Props {
   seasonNotesOpen: () => void;
-  onEditWorkout: (workoutId: String) => void;
-  workouts: any;
+  onEditWorkout: (workoutId: string) => void;
+  workouts: Workout[];
 }
 
 const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {

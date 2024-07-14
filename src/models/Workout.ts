@@ -1,10 +1,10 @@
 export interface Workout {
-  id: String;
-  name: String;
+  id: string;
+  name: string;
   trainingType: TrainingType;
-  details: String;
-  duration: Number; // recieved as minutes
-  date: Date;
+  details: string;
+  duration?: number; // recieved as minutes
+  date: string;
 }
 
 export enum TrainingType {

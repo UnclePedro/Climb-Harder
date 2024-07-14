@@ -2,17 +2,13 @@ import { useState } from "react";
 import Home from "./components/Home.tsx";
 import SeasonNotes from "./components/SeasonNotes.tsx";
 import EditWorkout from "./components/EditWorkout.tsx";
+import { getWorkouts } from "./helpers/workoutStorageHelper.ts";
 
 function App() {
-  // If previous user, get existing workouts data. If new user, set empty workouts array.
-  const workoutsLocal =
-    localStorage.getItem("workouts") || localStorage.setItem("workouts", "[]");
-
-  const unstringifiedWorkouts = JSON.parse(workoutsLocal || "");
+  const workouts = getWorkouts();
 
   const [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
-  const [editingWorkoutId, setEditingWorkoutId] = useState<String>();
-  const [workouts, setWorkouts] = useState(unstringifiedWorkouts);
+  const [editingWorkoutId, setEditingWorkoutId] = useState<string>();
 
   if (displaySeasonNotes)
     return <SeasonNotes onClose={() => setDisplaySeasonNotes(false)} />;
@@ -22,8 +18,6 @@ function App() {
         onClose={() => setEditingWorkoutId(undefined)}
         workoutId={editingWorkoutId}
         workouts={workouts}
-        onSave={setWorkouts}
-        onDelete={setWorkouts}
       />
     );
 

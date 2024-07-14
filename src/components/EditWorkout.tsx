@@ -1,88 +1,29 @@
-import { useState } from "react";
 import { Workout, TrainingType } from "../models/Workout.ts";
+import { deleteWorkout, saveWorkout } from "../helpers/workoutStorageHelper.ts";
 
 interface Props {
   onClose: () => void;
-  workoutId: String; // Loads either a new workoutId if one doesn't exist, or uses the workoutId of existing workout
-  workouts: any;
-  onSave: any;
-  onDelete: any;
+  workoutId: string; // Loads either a new workoutId if one doesn't exist, or uses the workoutId of existing workout
+  workouts: Workout[];
 }
 
-const EditWorkout = ({
-  onClose,
-  workoutId,
-  onSave,
-  workouts,
-  onDelete,
-}: Props) => {
+const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
   // Used to prefill new workout with last workout details
-  const lastWorkout = workouts[workouts.length - 1] || "";
-
-  // If the workoutId matches an existingWorkout.id from the workouts array, fill form state with that data. Or, set state to previous workout details and empty strings for a blank form
-  const workoutToEdit = workouts.find(
-    (existingWorkout: Workout) => existingWorkout.id === workoutId
-  ) || {
+  const lastWorkout = workouts[workouts.length - 1] as Workout | undefined;
+  const defaultWorkout: Workout = {
     id: workoutId,
-    name: lastWorkout.name,
-    trainingType: lastWorkout.trainingType || TrainingType.Base,
+    name: lastWorkout?.name ?? "",
+    trainingType: lastWorkout?.trainingType ?? TrainingType.Base,
     details: "",
-    duration: "",
+    duration: undefined,
     date: "",
   };
 
-  const [name, setName] = useState(workoutToEdit.name);
-  const [trainingType, setTrainingType] = useState(workoutToEdit.trainingType);
-  const [details, setDetails] = useState(workoutToEdit.details);
-  const [duration, setDuration] = useState(workoutToEdit.duration);
-  const [date, setDate] = useState(workoutToEdit.date);
-
-  const handleSave = () => {
-    const workout: Workout = {
-      id: workoutId,
-      name: name,
-      trainingType: trainingType,
-      details: details,
-      duration: duration,
-      date: date,
-    };
-
-    onSave((prevWorkouts: Workout[]) => {
-      // Check if the workout already exists by comparing the opened/editing workoutId with the workout array id's
-      const existingWorkout = prevWorkouts.find(
-        (savedWorkout: Workout) => savedWorkout.id === workout.id
-      );
-
-      // Holds array of workouts that reflects any updates made to existing workouts, or recieves new workoutout object
-      let updatedWorkouts;
-
-      if (existingWorkout) {
-        // The ternary operator updates the specific workout object if its id matches an existing workout.id; otherwise, it keeps the workout object unchanged to be added in else statement.
-        updatedWorkouts = prevWorkouts.map((savedWorkout: Workout) =>
-          savedWorkout.id === workout.id ? workout : savedWorkout
-        );
-      } else {
-        // If the workout does not exist, add it
-        updatedWorkouts = [...prevWorkouts, workout];
-      }
-
-      localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
-      return updatedWorkouts;
-    });
-
-    onClose();
-  };
-
-  const handleDelete = () => {
-    onDelete((prevWorkouts: Workout[]) => {
-      const updatedWorkouts = prevWorkouts.filter(
-        (existingWorkout: Workout) => existingWorkout.id !== workoutId
-      );
-      localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
-      return updatedWorkouts;
-    });
-    onClose();
-  };
+  // If the workoutId matches an existingWorkout.id from the workouts array, fill form state with that data. Or, set state to previous workout details and empty strings for a blank form
+  const workoutToEdit =
+    workouts.find(
+      (existingWorkout: Workout) => existingWorkout.id === workoutId
+    ) || defaultWorkout;
 
   // Check if workout exists. If true, delete button is rendered
   const isExistingWorkout = workouts.some(
@@ -103,23 +44,20 @@ const EditWorkout = ({
         <div className="">
           <p className="font-bold text-lg text-left">Workout Name</p>
           <textarea
-            onChange={(element) => {
-              setName(element.target.value);
-              localStorage.setItem("workoutName", element.target.value);
-            }}
+            onChange={(element) => (workoutToEdit.name = element.target.value)}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
           >
-            {name}
+            {workoutToEdit.name}
           </textarea>
           <p className="font-bold text-lg text-left">Training Type</p>
-          <select
+          {/* <select
             name="training-type"
             id="training-type"
             value={trainingType}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
             onChange={(element) => {
-              setTrainingType(element.target.value);
-              localStorage.setItem("trainingType", element.target.value);
+              const selectedTrainingType = element.target.value as TrainingType;
+              setTrainingType(selectedTrainingType);
             }}
           >
             <option value={TrainingType.Base}>Base Fitness</option>
@@ -140,41 +78,48 @@ const EditWorkout = ({
             {details}
           </textarea>
           <p className="font-bold text-lg text-left">Duration of Session</p>
-          <textarea
+          <input
+            type="number"
             onChange={(element) => {
-              setDuration(element.target.value);
+              console.log(element.target.value);
+              const upadtedDuration = parseInt(element.target.value);
+              setDuration(upadtedDuration);
               localStorage.setItem("duration", element.target.value);
             }}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-          >
-            {duration}
-          </textarea>
+            value={duration}
+          />
           <p className="font-bold text-lg text-left">Date</p>
-          <textarea
+          <input
+            type="date"
             onChange={(element) => {
               setDate(element.target.value);
               localStorage.setItem("date", element.target.value);
             }}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-          >
-            {date}
-          </textarea>
+            value={date}
+          />
+          */}
           <button
             className="bg-amber-500 font-bold rounded-lg p-3 mt-2 "
-            onClick={handleSave}
+            onClick={() => {
+              saveWorkout(workoutToEdit);
+              onClose();
+            }}
           >
             Save
           </button>
 
-          {isExistingWorkout ? (
+          {isExistingWorkout && (
             <button
               className="bg-amber-500 font-bold rounded-lg p-3 mx-4 "
-              onClick={handleDelete}
+              onClick={() => {
+                deleteWorkout(workoutId);
+                onClose();
+              }}
             >
               Delete
             </button>
-          ) : (
-            <></>
           )}
         </div>
       </div>
