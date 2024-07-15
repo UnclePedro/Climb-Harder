@@ -50,15 +50,15 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
             {workoutToEdit.name}
           </textarea>
           <p className="font-bold text-lg text-left">Training Type</p>
-          {/* <select
+          <select
             name="training-type"
             id="training-type"
-            value={trainingType}
+            value={workoutToEdit.trainingType}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-            onChange={(element) => {
-              const selectedTrainingType = element.target.value as TrainingType;
-              setTrainingType(selectedTrainingType);
-            }}
+            onChange={(element) =>
+              (workoutToEdit.trainingType = element.target
+                .value as TrainingType)
+            }
           >
             <option value={TrainingType.Base}>Base Fitness</option>
             <option value={TrainingType.Strength}>Strength</option>
@@ -69,37 +69,33 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
 
           <p className="font-bold text-lg text-left">Details</p>
           <textarea
-            onChange={(element) => {
-              setDetails(element.target.value);
-              localStorage.setItem("workoutDetails", element.target.value);
-            }}
+            onChange={(element) =>
+              (workoutToEdit.details = element.target.value)
+            }
             className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3"
           >
-            {details}
+            {/* Need to set to value of textArea instead. Causes bug if I do */}
+            {workoutToEdit.details}
           </textarea>
           <p className="font-bold text-lg text-left">Duration of Session</p>
+          {/* Doesn't allow update after initial save currently */}
           <input
             type="number"
             onChange={(element) => {
-              console.log(element.target.value);
-              const upadtedDuration = parseInt(element.target.value);
-              setDuration(upadtedDuration);
-              localStorage.setItem("duration", element.target.value);
+              const updatedDuration = parseInt(element.target.value);
+              workoutToEdit.duration = updatedDuration;
             }}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-            value={duration}
+            value={workoutToEdit.duration}
           />
           <p className="font-bold text-lg text-left">Date</p>
           <input
             type="date"
-            onChange={(element) => {
-              setDate(element.target.value);
-              localStorage.setItem("date", element.target.value);
-            }}
+            onChange={(element) => (workoutToEdit.date = element.target.value)}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-            value={date}
+            value={workoutToEdit.date}
           />
-          */}
+
           <button
             className="bg-amber-500 font-bold rounded-lg p-3 mt-2 "
             onClick={() => {
