@@ -1,5 +1,6 @@
 import { Workout, TrainingType } from "../models/Workout.ts";
 import { deleteWorkout, saveWorkout } from "../helpers/workoutStorageHelper.ts";
+import { useState } from "react";
 
 interface Props {
   onClose: () => void;
@@ -30,6 +31,8 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
     (existingWorkout: Workout) => existingWorkout.id === workoutId
   );
 
+  const [workoutData, setWorkoutData] = useState<Workout>(workoutToEdit);
+
   return (
     <>
       <div className="p-6 font-roboto">
@@ -44,21 +47,28 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
         <div className="">
           <p className="font-bold text-lg text-left">Workout Name</p>
           <textarea
-            onChange={(element) => (workoutToEdit.name = element.target.value)}
+            onChange={(element) => {
+              setWorkoutData((workoutData) => ({
+                ...workoutData,
+                name: element.target.value,
+              }));
+            }}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
-          >
-            {workoutToEdit.name}
-          </textarea>
+            value={workoutData.name}
+          />
+
           <p className="font-bold text-lg text-left">Training Type</p>
           <select
             name="training-type"
             id="training-type"
-            value={workoutToEdit.trainingType}
+            value={workoutData.trainingType}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-            onChange={(element) =>
-              (workoutToEdit.trainingType = element.target
-                .value as TrainingType)
-            }
+            onChange={(element) => {
+              setWorkoutData((workoutData) => ({
+                ...workoutData,
+                trainingType: element.target.value as TrainingType,
+              }));
+            }}
           >
             <option value={TrainingType.Base}>Base Fitness</option>
             <option value={TrainingType.Strength}>Strength</option>
@@ -69,37 +79,47 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
 
           <p className="font-bold text-lg text-left">Details</p>
           <textarea
-            onChange={(element) =>
-              (workoutToEdit.details = element.target.value)
-            }
+            onChange={(element) => {
+              setWorkoutData({
+                ...workoutData,
+                details: element.target.value,
+              });
+            }}
             className="w-full h-48 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-          >
-            {/* Need to set to value of textArea instead. Causes bug if I do */}
-            {workoutToEdit.details}
-          </textarea>
+            value={workoutData.details}
+          />
+
           <p className="font-bold text-lg text-left">Duration of Session</p>
-          {/* Doesn't allow update after initial save currently */}
           <input
             type="number"
             onChange={(element) => {
               const updatedDuration = parseInt(element.target.value);
-              workoutToEdit.duration = updatedDuration;
+              setWorkoutData({
+                ...workoutData,
+                duration: updatedDuration,
+              });
             }}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-            value={workoutToEdit.duration}
+            value={workoutData.duration}
           />
+
           <p className="font-bold text-lg text-left">Date</p>
           <input
             type="date"
-            onChange={(element) => (workoutToEdit.date = element.target.value)}
+            onChange={(element) => {
+              setWorkoutData({
+                ...workoutData,
+                date: element.target.value,
+              });
+            }}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-            value={workoutToEdit.date}
+            value={workoutData.date}
           />
 
           <button
             className="bg-amber-500 font-bold rounded-lg p-3 mt-2 "
             onClick={() => {
-              saveWorkout(workoutToEdit);
+              saveWorkout(workoutData);
               onClose();
             }}
           >
