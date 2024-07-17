@@ -10,6 +10,13 @@ export const getWorkouts = (): Workout[] => {
   return workouts;
 };
 
+// const validateForm = (workout: Workout) => {
+//   if (workout.name === "") {
+//     alert("Please fill out workout name.");
+//     return false;
+//   }
+// };
+
 export const saveWorkout = (workout: Workout) => {
   const workouts = getWorkouts();
 
@@ -30,7 +37,6 @@ export const saveWorkout = (workout: Workout) => {
     // If the workout does not exist, add it
     updatedWorkouts = [...workouts, workout];
   }
-
   localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
 };
 
@@ -39,4 +45,17 @@ export const deleteWorkout = (workoutId: string) => {
     (existingWorkout: Workout) => existingWorkout.id !== workoutId
   );
   localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
+};
+
+export const newDate = () => {
+  let date, month, year;
+
+  date = new Date().getDate();
+  month = new Date().getMonth() + 1;
+  year = new Date().getFullYear();
+
+  date = date.toString().padStart(2, "0");
+  month = month.toString().padStart(2, "0");
+
+  return `${year}-${month}-${date}`;
 };

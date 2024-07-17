@@ -11,10 +11,10 @@ const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
     <>
       <Fade>
         <div className="bg-amber-200 bg-opacity-65 rounded-lg">
-          {workouts.map((workout: any) => (
+          {workouts.toReversed().map((workout: any) => (
             <button
               key={workout.id}
-              className="m-2"
+              className="m-1"
               onClick={() => {
                 onEditWorkout(workout.id), console.log(workout.id);
               }}

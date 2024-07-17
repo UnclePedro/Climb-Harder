@@ -1,5 +1,9 @@
 import { Workout, TrainingType } from "../models/Workout.ts";
-import { deleteWorkout, saveWorkout } from "../helpers/workoutStorageHelper.ts";
+import {
+  newDate,
+  deleteWorkout,
+  saveWorkout,
+} from "../helpers/workoutStorageHelper.ts";
 import { useState } from "react";
 
 interface Props {
@@ -13,11 +17,11 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
   const lastWorkout = workouts[workouts.length - 1] as Workout | undefined;
   const defaultWorkout: Workout = {
     id: workoutId,
-    name: lastWorkout?.name ?? "",
+    name: lastWorkout?.name ?? "Workout Name",
     trainingType: lastWorkout?.trainingType ?? TrainingType.Base,
     details: "",
     duration: undefined,
-    date: "",
+    date: newDate(),
   };
 
   // If the workoutId matches an existingWorkout.id from the workouts array, fill form state with that data. Or, set state to previous workout details and empty strings for a blank form
@@ -46,8 +50,9 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
           </button>
         </div>
         <div className="">
-          <p className="font-bold text-lg text-left">Workout Name</p>
-          <textarea
+          <p className="font-bold text-lg text-left mt-2">Workout Name</p>
+          <input
+            defaultValue="Workout"
             onChange={(element) => {
               setWorkoutData({
                 ...workoutData,
@@ -58,7 +63,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
             value={workoutData.name}
           />
 
-          <p className="font-bold text-lg text-left">Training Type</p>
+          <p className="font-bold text-lg text-left mt-2">Training Type</p>
           <select
             name="training-type"
             id="training-type"
@@ -78,7 +83,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
             <option value={TrainingType.Performance}>Performance</option>
           </select>
 
-          <p className="font-bold text-lg text-left">Details</p>
+          <p className="font-bold text-lg text-left mt-2">Details</p>
           <textarea
             onChange={(element) => {
               setWorkoutData({
@@ -90,7 +95,9 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
             value={workoutData.details}
           />
 
-          <p className="font-bold text-lg text-left">Duration of Session</p>
+          <p className="font-bold text-lg text-left mt-2">
+            Duration of Session (minutes)
+          </p>
           <input
             type="number"
             onChange={(element) => {
@@ -104,9 +111,10 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
             value={workoutData.duration}
           />
 
-          <p className="font-bold text-lg text-left">Date</p>
+          <p className="font-bold text-lg text-left mt-2">Date</p>
           <input
             type="date"
+            id="date"
             onChange={(element) => {
               setWorkoutData({
                 ...workoutData,
