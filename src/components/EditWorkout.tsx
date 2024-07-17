@@ -31,6 +31,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
     (existingWorkout: Workout) => existingWorkout.id === workoutId
   );
 
+  // Used to hold data of the new or existing workout being edited, then passed to onSave
   const [workoutData, setWorkoutData] = useState<Workout>(workoutToEdit);
 
   return (
@@ -48,10 +49,10 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
           <p className="font-bold text-lg text-left">Workout Name</p>
           <textarea
             onChange={(element) => {
-              setWorkoutData((workoutData) => ({
+              setWorkoutData({
                 ...workoutData,
                 name: element.target.value,
-              }));
+              });
             }}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
             value={workoutData.name}
@@ -64,10 +65,10 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
             value={workoutData.trainingType}
             className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
             onChange={(element) => {
-              setWorkoutData((workoutData) => ({
+              setWorkoutData({
                 ...workoutData,
                 trainingType: element.target.value as TrainingType,
-              }));
+              });
             }}
           >
             <option value={TrainingType.Base}>Base Fitness</option>
