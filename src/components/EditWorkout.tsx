@@ -93,7 +93,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
                   details: element.target.value,
                 });
               }}
-              className="w-full h-60 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-56 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={workoutData.details}
             />
 
@@ -127,7 +127,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
             />
 
             <button
-              className="bg-amber-500 font-bold rounded-lg p-3 mt-2 "
+              className="bg-amber-500 font-bold rounded-lg p-3 mt-2 ml-6 sm:ml-0"
               onClick={() => {
                 saveWorkout(workoutData);
                 onClose();
