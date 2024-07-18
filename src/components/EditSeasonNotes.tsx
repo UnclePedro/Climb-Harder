@@ -25,7 +25,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes }: Props) => {
                   trainingFocuses: element.target.value,
                 });
               }}
-              className="w-full h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-40 md:h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={seasonNotesData.trainingFocuses}
             />
             <p className="font-bold text-lg text-left pt-3">Goals</p>
@@ -36,7 +36,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes }: Props) => {
                   goals: element.target.value,
                 });
               }}
-              className="w-full h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-40 md:h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={seasonNotesData.goals}
             />
 
@@ -48,7 +48,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes }: Props) => {
                   achievements: element.target.value,
                 });
               }}
-              className="w-full h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-40 md:h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={seasonNotesData.achievements}
             />
             <button
