@@ -47,7 +47,7 @@ export const deleteWorkout = (workoutId: string) => {
   localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
 };
 
-export const newDate = () => {
+export const getDate = () => {
   let date, month, year;
 
   date = new Date().getDate();
@@ -61,7 +61,9 @@ export const newDate = () => {
 };
 
 export const totalWorkoutTime = (workouts: Workout[]) => {
-  return workouts.reduce((accumulator: number, { duration }) => {
-    return accumulator + duration;
-  }, 0);
+  return workouts
+    .reduce((accumulator: number, { duration }) => {
+      return accumulator + duration / 60;
+    }, 0)
+    .toFixed(2);
 };

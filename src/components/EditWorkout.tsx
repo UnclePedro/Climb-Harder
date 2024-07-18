@@ -1,6 +1,6 @@
 import { Workout, TrainingType } from "../models/Workout.ts";
 import {
-  newDate,
+  getDate,
   deleteWorkout,
   saveWorkout,
 } from "../helpers/workoutStorageHelper.ts";
@@ -21,7 +21,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
     trainingType: lastWorkout?.trainingType ?? TrainingType.Base,
     details: "",
     duration: 0,
-    date: newDate(),
+    date: getDate(),
   };
 
   // If the workoutId matches an existingWorkout.id from the workouts array, fill form state with that data. Or, set state to previous workout details and empty strings for a blank form

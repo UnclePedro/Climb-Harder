@@ -40,8 +40,7 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
         </button>
         <p className="font-medium text-lg mt-3">All Workouts</p>{" "}
         <p className="my-2 text-sm italic">
-          Total time worked out this season: {totalWorkoutTime(workouts)}{" "}
-          minutes
+          Total time worked out this season: {totalWorkoutTime(workouts)} hours
         </p>
         <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
       </div>
