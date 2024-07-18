@@ -5,6 +5,7 @@ import {
   saveWorkout,
 } from "../helpers/workoutStorageHelper.ts";
 import { useState } from "react";
+import { Fade } from "react-awesome-reveal";
 
 interface Props {
   onClose: () => void;
@@ -40,116 +41,118 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
 
   return (
     <>
-      <div className="flex justify-center items-center">
-        <div className="p-6 font-roboto w-11/12 md:w-2/3 lg:w-1/2">
-          <div className="flex justify-end">
-            <button
-              className="font-medium text-xl rounded-full w-10 h-10 bg-amber-500 "
-              onClick={onClose}
-            >
-              x
-            </button>
-          </div>
-          <div className="">
-            <p className="font-bold text-lg text-left mt-2">Workout Name</p>
-            <input
-              onChange={(element) => {
-                setWorkoutData({
-                  ...workoutData,
-                  name: element.target.value,
-                });
-              }}
-              className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
-              value={workoutData.name}
-            />
-
-            <p className="font-bold text-lg text-left mt-2">Training Type</p>
-            <select
-              name="training-type"
-              id="training-type"
-              value={workoutData.trainingType}
-              className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-              onChange={(element) => {
-                setWorkoutData({
-                  ...workoutData,
-                  trainingType: element.target.value as TrainingType,
-                });
-              }}
-            >
-              <option value={TrainingType.Base}>Base Fitness</option>
-              <option value={TrainingType.Strength}>Strength</option>
-              <option value={TrainingType.Power}>Power</option>
-              <option value={TrainingType.PowerEndurance}>
-                Power Endurance
-              </option>
-              <option value={TrainingType.Performance}>Performance</option>
-            </select>
-
-            <p className="font-bold text-lg text-left mt-2">Details</p>
-            <textarea
-              onChange={(element) => {
-                setWorkoutData({
-                  ...workoutData,
-                  details: element.target.value,
-                });
-              }}
-              className="w-full h-56 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-              value={workoutData.details}
-            />
-
-            <p className="font-bold text-lg text-left mt-2">
-              Duration of Session (minutes)
-            </p>
-            <input
-              type="number"
-              onChange={(element) => {
-                const updatedDuration = parseInt(element.target.value);
-                setWorkoutData({
-                  ...workoutData,
-                  duration: updatedDuration,
-                });
-              }}
-              className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-              value={workoutData.duration}
-            />
-
-            <p className="font-bold text-lg text-left mt-2">Date</p>
-            <input
-              type="date"
-              onChange={(element) => {
-                setWorkoutData({
-                  ...workoutData,
-                  date: element.target.value,
-                });
-              }}
-              className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-              value={workoutData.date}
-            />
-
-            <button
-              className="bg-amber-500 font-bold rounded-lg p-3 mt-2 ml-6 sm:ml-0"
-              onClick={() => {
-                saveWorkout(workoutData);
-                onClose();
-              }}
-            >
-              Save
-            </button>
-
-            {isExistingWorkout && (
+      <Fade>
+        <div className="flex justify-center items-center">
+          <div className="p-6 font-roboto w-11/12 md:w-2/3 lg:w-1/2">
+            <div className="flex justify-end">
               <button
-                className="bg-amber-500 font-bold rounded-lg p-3 mx-4 "
+                className="font-medium text-xl rounded-full w-10 h-10 bg-amber-500 "
+                onClick={onClose}
+              >
+                x
+              </button>
+            </div>
+            <div className="">
+              <p className="font-bold text-lg text-left mt-2">Workout Name</p>
+              <input
+                onChange={(element) => {
+                  setWorkoutData({
+                    ...workoutData,
+                    name: element.target.value,
+                  });
+                }}
+                className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
+                value={workoutData.name}
+              />
+
+              <p className="font-bold text-lg text-left mt-2">Training Type</p>
+              <select
+                name="training-type"
+                id="training-type"
+                value={workoutData.trainingType}
+                className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+                onChange={(element) => {
+                  setWorkoutData({
+                    ...workoutData,
+                    trainingType: element.target.value as TrainingType,
+                  });
+                }}
+              >
+                <option value={TrainingType.Base}>Base Fitness</option>
+                <option value={TrainingType.Strength}>Strength</option>
+                <option value={TrainingType.Power}>Power</option>
+                <option value={TrainingType.PowerEndurance}>
+                  Power Endurance
+                </option>
+                <option value={TrainingType.Performance}>Performance</option>
+              </select>
+
+              <p className="font-bold text-lg text-left mt-2">Details</p>
+              <textarea
+                onChange={(element) => {
+                  setWorkoutData({
+                    ...workoutData,
+                    details: element.target.value,
+                  });
+                }}
+                className="w-full h-56 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+                value={workoutData.details}
+              />
+
+              <p className="font-bold text-lg text-left mt-2">
+                Duration of Session (minutes)
+              </p>
+              <input
+                type="number"
+                onChange={(element) => {
+                  const updatedDuration = parseInt(element.target.value);
+                  setWorkoutData({
+                    ...workoutData,
+                    duration: updatedDuration,
+                  });
+                }}
+                className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+                value={workoutData.duration}
+              />
+
+              <p className="font-bold text-lg text-left mt-2">Date</p>
+              <input
+                type="date"
+                onChange={(element) => {
+                  setWorkoutData({
+                    ...workoutData,
+                    date: element.target.value,
+                  });
+                }}
+                className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+                value={workoutData.date}
+              />
+
+              <button
+                className="bg-amber-500 font-bold rounded-lg p-3 mt-2 ml-6 sm:ml-0"
                 onClick={() => {
-                  deleteWorkout(workoutId);
+                  saveWorkout(workoutData);
                   onClose();
                 }}
               >
-                Delete
+                Save
               </button>
-            )}
+
+              {isExistingWorkout && (
+                <button
+                  className="bg-amber-500 font-bold rounded-lg p-3 mx-4 "
+                  onClick={() => {
+                    deleteWorkout(workoutId);
+                    onClose();
+                  }}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </Fade>
     </>
   );
 };
