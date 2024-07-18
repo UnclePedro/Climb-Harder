@@ -11,11 +11,11 @@ const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
   return (
     <>
       <Fade>
-        <div className="bg-amber-200 bg-opacity-65 rounded-lg">
+        <div className="bg-amber-200 bg-opacity-65 rounded-lg w-fit">
           {workouts.map((workout: any) => (
             <button
               key={workout.id}
-              className="m-1"
+              className="m-2"
               onClick={() => {
                 onEditWorkout(workout.id), console.log(workout.id);
               }}
