@@ -1,17 +1,24 @@
 import { useState } from "react";
 import Home from "./components/Home.tsx";
-import SeasonNotes from "./components/SeasonNotes.tsx";
+import EditSeasonNotes from "./components/EditSeasonNotes.tsx";
 import EditWorkout from "./components/EditWorkout.tsx";
 import { getWorkouts } from "./helpers/workoutStorageHelper.ts";
+import { getSeasonNotes } from "./helpers/seasonNotesStorageHelper.ts";
 
 function App() {
   const workouts = getWorkouts();
+  const seasonNotes = getSeasonNotes();
 
   const [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
   const [editingWorkoutId, setEditingWorkoutId] = useState<string>();
 
   if (displaySeasonNotes)
-    return <SeasonNotes onClose={() => setDisplaySeasonNotes(false)} />;
+    return (
+      <EditSeasonNotes
+        onClose={() => setDisplaySeasonNotes(false)}
+        seasonNotes={seasonNotes}
+      />
+    );
   if (editingWorkoutId)
     return (
       <EditWorkout
