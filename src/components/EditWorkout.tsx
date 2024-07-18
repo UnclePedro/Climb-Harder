@@ -20,7 +20,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
     name: lastWorkout?.name ?? "Workout Name",
     trainingType: lastWorkout?.trainingType ?? TrainingType.Base,
     details: "",
-    duration: undefined,
+    duration: 0,
     date: newDate(),
   };
 
@@ -52,7 +52,6 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
         <div className="">
           <p className="font-bold text-lg text-left mt-2">Workout Name</p>
           <input
-            defaultValue="Workout"
             onChange={(element) => {
               setWorkoutData({
                 ...workoutData,

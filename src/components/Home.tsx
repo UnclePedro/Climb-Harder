@@ -1,3 +1,4 @@
+import { totalWorkoutTime } from "../helpers/workoutStorageHelper";
 import { Workout } from "../models/Workout";
 import QuoteGenerator from "./QuoteGenerator";
 import WorkoutList from "./WorkoutList";
@@ -16,11 +17,7 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
           <div className="w-72">
             <QuoteGenerator />
           </div>
-          {/* <button className="bg-amber-600 font-medium rounded-full w-10 h-10 p-2 ml-14">
-            ///
-          </button> */}
         </div>
-
         <div className="flex mt-6">
           <h1 className="pt-6 text-2xl text-left font-bold">
             Training Logbook
@@ -41,7 +38,11 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
         >
           Goals & Achievements
         </button>
-        <p className="font-medium text-lg mt-3">All Workouts</p>
+        <p className="font-medium text-lg mt-3">All Workouts</p>{" "}
+        <p className="my-2 text-sm italic">
+          Total time worked out this season: {totalWorkoutTime(workouts)}{" "}
+          minutes
+        </p>
         <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
       </div>
     </>

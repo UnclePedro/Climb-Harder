@@ -1,8 +1,9 @@
+import { Workout } from "../models/Workout";
 import WorkoutTile from "./WorkoutTile";
 import { Fade } from "react-awesome-reveal";
 
 interface Props {
-  workouts: any;
+  workouts: Workout[];
   onEditWorkout: (workoutId: string) => void;
 }
 
@@ -11,10 +12,7 @@ const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
     <>
       <Fade>
         <div className="bg-amber-200 bg-opacity-65 rounded-lg">
-          <p className="p-2 text-sm italic">
-            Total time worked out this season: {}
-          </p>
-          {workouts.toReversed().map((workout: any) => (
+          {workouts.map((workout: any) => (
             <button
               key={workout.id}
               className="m-1"

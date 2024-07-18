@@ -60,10 +60,8 @@ export const newDate = () => {
   return `${year}-${month}-${date}`;
 };
 
-// export const totalWorkoutTime = (workouts: Workout) => {
-//   const initialValue: number = 0;
-//   workouts.duration.reduce(
-//     (accumulator: number, currentValue: number) => accumulator + currentValue,
-//     initialValue
-//   );
-// };
+export const totalWorkoutTime = (workouts: Workout[]) => {
+  return workouts.reduce((accumulator: number, { duration }) => {
+    return accumulator + duration;
+  }, 0);
+};
