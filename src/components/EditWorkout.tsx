@@ -113,7 +113,6 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
           <p className="font-bold text-lg text-left mt-2">Date</p>
           <input
             type="date"
-            id="date"
             onChange={(element) => {
               setWorkoutData({
                 ...workoutData,
