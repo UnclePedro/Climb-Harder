@@ -40,7 +40,7 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
             </button>
           </div>
 
-          <div className="p-6 -mt-6">
+          <div className="p-6 -mt-8">
             <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
           </div>
         </div>

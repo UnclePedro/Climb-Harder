@@ -18,7 +18,7 @@ const WorkoutTile = ({ name, trainingType, date }: Props) => {
   };
 
   return (
-    <div className={`${colors[trainingType]} p-4 m-1 rounded-lg bg-`}>
+    <div className={`${colors[trainingType]} p-4 m-1 rounded-lg shadow-md`}>
       <p className="text-xs">{date}</p>
       <p className="font-bold text-lg">{name}</p>
       <p className="">{trainingType}</p>
