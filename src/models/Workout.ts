@@ -13,5 +13,4 @@ export enum TrainingType {
   Power = "Power",
   PowerEndurance = "Power Endurance",
   Performance = "Performance",
-  All = "All",
 }

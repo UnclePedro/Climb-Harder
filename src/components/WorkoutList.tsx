@@ -8,12 +8,12 @@ interface Props {
 }
 
 const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
-  const [trainingTypeFilter, setTrainingTypeFilter] = useState<TrainingType>(
-    TrainingType.All
-  );
+  const [trainingTypeFilter, setTrainingTypeFilter] = useState<
+    TrainingType | ""
+  >("");
 
   const filteredWorkouts = (workouts: Workout[]) => {
-    if (trainingTypeFilter === TrainingType.All) {
+    if (trainingTypeFilter === "") {
       console.log(trainingTypeFilter);
       return workouts;
     } else console.log(trainingTypeFilter);
@@ -35,7 +35,7 @@ const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
             setTrainingTypeFilter(element.target.value as TrainingType);
           }}
         >
-          <option value={TrainingType.All}>All Workouts</option>
+          <option value={""}>All Workouts</option>
           <option value={TrainingType.Base}>Base Fitness</option>
           <option value={TrainingType.Strength}>Strength</option>
           <option value={TrainingType.Power}>Power</option>
