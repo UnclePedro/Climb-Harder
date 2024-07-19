@@ -1,5 +1,4 @@
 import { Fade } from "react-awesome-reveal";
-import { totalWorkoutTime } from "../helpers/workoutStorageHelper";
 import { Workout } from "../models/Workout";
 import QuoteGenerator from "./QuoteGenerator";
 import WorkoutList from "./WorkoutList";
@@ -39,11 +38,6 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
             >
               Goals & Achievements
             </button>
-            {/* <p className="font-medium text-lg mt-3">All Workouts</p> */}
-            <p className="my-2 text-sm italic">
-              Total time worked out this season: {totalWorkoutTime(workouts)}{" "}
-              hours
-            </p>
           </div>
 
           <div className="p-6 -mt-6">

@@ -1,4 +1,4 @@
-import { Workout } from "../models/Workout";
+import { TrainingType, Workout } from "../models/Workout";
 
 // If previous user, get existing workouts data. If new user, set empty workouts array.
 export const getWorkouts = (): Workout[] => {
@@ -66,4 +66,18 @@ export const totalWorkoutTime = (workouts: Workout[]) => {
       return accumulator + duration / 60;
     }, 0)
     .toFixed(2);
+};
+
+export const filterWorkouts = (
+  workouts: Workout[],
+  trainingTypeFilter: TrainingType | string
+) => {
+  if (trainingTypeFilter === "") {
+    console.log(trainingTypeFilter);
+    return workouts;
+  } else console.log(trainingTypeFilter);
+
+  return workouts.filter(
+    (workout) => workout.trainingType === trainingTypeFilter
+  );
 };

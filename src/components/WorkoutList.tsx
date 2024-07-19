@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { TrainingType, Workout } from "../models/Workout";
 import WorkoutTile from "./WorkoutTile";
+import {
+  filterWorkouts,
+  totalWorkoutTime,
+} from "../helpers/workoutStorageHelper";
 
 interface Props {
   workouts: Workout[];
@@ -12,20 +16,13 @@ const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
     TrainingType | ""
   >("");
 
-  const filteredWorkouts = (workouts: Workout[]) => {
-    if (trainingTypeFilter === "") {
-      console.log(trainingTypeFilter);
-      return workouts;
-    } else console.log(trainingTypeFilter);
-
-    return workouts.filter(
-      (workout) => workout.trainingType === trainingTypeFilter
-    );
-  };
-
   return (
     <>
       <div className="bg-amber-200 bg-opacity-65 rounded-lg w-fit">
+        <p className="my-2 text-sm italic">
+          Total time worked out this season:{" "}
+          {totalWorkoutTime(filterWorkouts(workouts, trainingTypeFilter))} hours
+        </p>
         <select
           name="training-type"
           id="training-type"
@@ -42,7 +39,7 @@ const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
           <option value={TrainingType.PowerEndurance}>Power Endurance</option>
           <option value={TrainingType.Performance}>Performance</option>
         </select>
-        {filteredWorkouts(workouts).map((workout: any) => (
+        {filterWorkouts(workouts, trainingTypeFilter).map((workout: any) => (
           <button
             key={workout.id}
             className="m-2"
