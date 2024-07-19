@@ -129,7 +129,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
               />
 
               <button
-                className="bg-amber-500 font-bold rounded-lg p-3 mt-2 ml-6 sm:ml-0"
+                className="bg-amber-500 font-bold rounded-lg p-3 mt-2"
                 onClick={() => {
                   saveWorkout(workoutData);
                   onClose();
