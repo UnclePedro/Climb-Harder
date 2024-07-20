@@ -8,12 +8,13 @@ const QuoteGenerator = () => {
     },
     {
       quote:
-        "Success is not the key to happiness. Happiness is the key to success.",
-      author: "Albert Schweitzer",
+        "A comfort zone is a beautiful place, but nothing ever grows there.",
+      author: "John Assaraf",
     },
     {
-      quote: "You miss 100% of the shots you don't take.",
-      author: "Wayne Gretzky",
+      quote:
+        "It's only after you've stepped out of your comfort zone that you begin to change, grow, and transform.",
+      author: "Roy T. Bennett",
     },
     {
       quote: "Believe you can and you're halfway there.",

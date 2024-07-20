@@ -23,22 +23,25 @@ const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
           Total time worked out this season:{" "}
           {totalWorkoutTime(filterWorkouts(workouts, trainingTypeFilter))} hours
         </p>
-        <select
-          name="training-type"
-          id="training-type"
-          value={trainingTypeFilter}
-          className="flex w-10/12 sm:w-72 m-3 p-3 h-12  bg-amber-300 bg-opacity-70 shadow-md rounded resize-y"
-          onChange={(element) => {
-            setTrainingTypeFilter(element.target.value as TrainingType);
-          }}
-        >
-          <option value={""}>All Workouts</option>
-          <option value={TrainingType.Base}>Base Fitness</option>
-          <option value={TrainingType.Strength}>Strength</option>
-          <option value={TrainingType.Power}>Power</option>
-          <option value={TrainingType.PowerEndurance}>Power Endurance</option>
-          <option value={TrainingType.Performance}>Performance</option>
-        </select>
+        <div className="pb-4">
+          <select
+            name="training-type"
+            id="training-type"
+            value={trainingTypeFilter}
+            className="flex w-10/12 sm:w-72 mx-3 p-3 h-12  bg-amber-300 bg-opacity-70 shadow-md rounded resize-y"
+            onChange={(element) => {
+              setTrainingTypeFilter(element.target.value as TrainingType);
+            }}
+          >
+            <option value={""}>All Workouts</option>
+            <option value={TrainingType.Base}>Base Fitness</option>
+            <option value={TrainingType.Strength}>Strength</option>
+            <option value={TrainingType.Power}>Power</option>
+            <option value={TrainingType.PowerEndurance}>Power Endurance</option>
+            <option value={TrainingType.Performance}>Performance</option>
+          </select>
+        </div>
+
         {filterWorkouts(workouts, trainingTypeFilter).map((workout: any) => (
           <button
             key={workout.id}
