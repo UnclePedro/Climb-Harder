@@ -8,11 +8,19 @@ import { getSeasons } from "./helpers/seasonsStorageHelper.ts";
 
 function App() {
   const seasons = getSeasons();
-  const workouts = getWorkouts();
-  const seasonNotes = getSeasonNotes();
 
+  const [currentSeasonId, setCurrentSeasonId] = useState<string>(
+    seasons[seasons.length - 1].id
+  );
   const [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
   const [editingWorkoutId, setEditingWorkoutId] = useState<string>();
+
+  // Need to create state to hold the current season ID being edited similar to editingWorkoutId
+  // Then use the season ID to find the season in the Seasons array
+
+  const currentSeason = seasons.find((season) => season.id === currentSeasonId);
+  const workouts = getWorkouts();
+  const seasonNotes = getSeasonNotes();
 
   if (displaySeasonNotes)
     return (

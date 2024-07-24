@@ -1,19 +1,10 @@
 import { Season } from "../models/Season";
-import { TrainingType } from "../models/Workout";
 import { newId } from "../utils/helpers";
-import { getDate } from "./workoutStorageHelper";
 
 const defaultSeason: Season = {
   id: newId(),
-  name: "",
-  workouts: {
-    id: newId(),
-    name: "",
-    trainingType: TrainingType.Base,
-    details: "",
-    duration: 0,
-    date: getDate(),
-  },
+  name: "Season 1",
+  workouts: [],
   seasonNotes: {
     trainingFocuses: "",
     goals: "",
@@ -21,11 +12,15 @@ const defaultSeason: Season = {
   },
 };
 
-export const getSeasons = (): Season => {
+export const getSeasons = (): Season[] => {
   if (localStorage.getItem("seasons") === null) {
     localStorage.setItem("seasons", JSON.stringify(defaultSeason));
   }
   const seasonsLocal = localStorage.getItem("seasons") as string;
-  const seasons = JSON.parse(seasonsLocal) as Season;
+  const seasons = JSON.parse(seasonsLocal) as Season[];
   return seasons;
+};
+
+export const getSeason = (seasonId: string): Season => {
+  return getSeasons().find((season) => season.id === seasonId) as Season;
 };

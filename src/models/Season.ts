@@ -4,6 +4,6 @@ import { Workout } from "./Workout";
 export interface Season {
   id: string;
   name: string;
-  workouts: Workout;
+  workouts: Workout[];
   seasonNotes: SeasonNotes;
 }

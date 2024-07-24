@@ -1,12 +1,9 @@
 import { TrainingType, Workout } from "../models/Workout";
+import { getSeason } from "./seasonsStorageHelper";
 
 // If previous user, get existing workouts data. If new user, set empty workouts array.
 export const getWorkouts = (): Workout[] => {
-  if (localStorage.getItem("workouts") === null) {
-    localStorage.setItem("workouts", "[]");
-  }
-  const workoutsLocal = localStorage.getItem("workouts") as string;
-  const workouts = JSON.parse(workoutsLocal) as Workout[];
+  const workouts = getSeason().workouts;
   return workouts;
 };
 
