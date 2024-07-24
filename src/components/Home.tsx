@@ -2,6 +2,7 @@ import { Fade } from "react-awesome-reveal";
 import { Workout } from "../models/Workout";
 import QuoteGenerator from "./QuoteGenerator";
 import WorkoutList from "./WorkoutList";
+import { newId } from "../utils/helpers";
 
 interface Props {
   seasonNotesOpen: () => void;
@@ -25,8 +26,7 @@ const Home = ({ seasonNotesOpen, onEditWorkout, workouts }: Props) => {
               <button
                 className="bg-amber-500 font-medium rounded-full w-10 h-10 ml-6 mt-5"
                 onClick={() => {
-                  const newWorkoutId = crypto.randomUUID();
-                  onEditWorkout(newWorkoutId);
+                  onEditWorkout(newId());
                 }}
               >
                 +
