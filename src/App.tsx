@@ -4,8 +4,10 @@ import EditSeasonNotes from "./components/EditSeasonNotes.tsx";
 import EditWorkout from "./components/EditWorkout.tsx";
 import { getWorkouts } from "./helpers/workoutStorageHelper.ts";
 import { getSeasonNotes } from "./helpers/seasonNotesStorageHelper.ts";
+import { getSeasons } from "./helpers/seasonsStorageHelper.ts";
 
 function App() {
+  const seasons = getSeasons();
   const workouts = getWorkouts();
   const seasonNotes = getSeasonNotes();
 

@@ -10,13 +10,6 @@ export const getWorkouts = (): Workout[] => {
   return workouts;
 };
 
-// const validateForm = (workout: Workout) => {
-//   if (workout.name === "") {
-//     alert("Please fill out workout name.");
-//     return false;
-//   }
-// };
-
 export const saveWorkout = (workout: Workout) => {
   const workouts = getWorkouts();
 
