@@ -21,7 +21,7 @@ function App() {
     (season) => season.id === currentSeasonId
   ) as Season;
   const workouts = getWorkouts(currentSeason);
-  const seasonNotes = getSeasonNotes();
+  const seasonNotes = getSeasonNotes(currentSeason);
 
   if (displaySeasonNotes)
     return (

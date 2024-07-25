@@ -1,14 +1,11 @@
+import { Season } from "../models/Season";
 import { SeasonNotes } from "../models/SeasonNotes";
 
-export const getSeasonNotes = (): SeasonNotes => {
-  if (localStorage.getItem("seasonNotes") === null) {
-    localStorage.setItem("seasonNotes", "{}");
-  }
-  const seasonNotesLocal = localStorage.getItem("seasonNotes") as string;
-  const seasonNotes = JSON.parse(seasonNotesLocal) as SeasonNotes;
+export const getSeasonNotes = (currentSeason: Season) => {
+  const seasonNotes = currentSeason.seasonNotes as SeasonNotes;
   return seasonNotes;
 };
 
-export const saveSeasonNotes = (seasonNotes: SeasonNotes) => {
-  localStorage.setItem("seasonNotes", JSON.stringify(seasonNotes));
+export const saveSeasonNotes = (updatedSeasonNotes: SeasonNotes) => {
+  localStorage.setItem("seasons", JSON.stringify(updatedSeasonNotes));
 };
