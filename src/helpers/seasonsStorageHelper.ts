@@ -12,6 +12,7 @@ const defaultSeason: Season = {
   },
 };
 
+// Returns seasons array if exists, if null creates new empty season
 export const getSeasons = (): Season[] => {
   if (localStorage.getItem("seasons") === null) {
     localStorage.setItem("seasons", JSON.stringify(defaultSeason));
@@ -21,6 +22,7 @@ export const getSeasons = (): Season[] => {
   return seasons;
 };
 
+// Selects specific season within the seasons array based on filtering by ID
 export const getSeason = (seasonId: string): Season => {
   return getSeasons().find((season) => season.id === seasonId) as Season;
 };

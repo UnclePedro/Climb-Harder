@@ -5,6 +5,7 @@ import EditWorkout from "./components/EditWorkout.tsx";
 import { getWorkouts } from "./helpers/workoutStorageHelper.ts";
 import { getSeasonNotes } from "./helpers/seasonNotesStorageHelper.ts";
 import { getSeasons } from "./helpers/seasonsStorageHelper.ts";
+import { Season } from "./models/Season.ts";
 
 function App() {
   const seasons = getSeasons();
@@ -18,8 +19,10 @@ function App() {
   // Need to create state to hold the current season ID being edited similar to editingWorkoutId
   // Then use the season ID to find the season in the Seasons array
 
-  const currentSeason = seasons.find((season) => season.id === currentSeasonId);
-  const workouts = getWorkouts();
+  const currentSeason: Season = seasons.find(
+    (season) => season.id === currentSeasonId
+  ) as Season;
+  const workouts = getWorkouts(currentSeason);
   const seasonNotes = getSeasonNotes();
 
   if (displaySeasonNotes)
@@ -35,6 +38,7 @@ function App() {
         onClose={() => setEditingWorkoutId(undefined)}
         workoutId={editingWorkoutId}
         workouts={workouts}
+        currentSeason={currentSeason}
       />
     );
 

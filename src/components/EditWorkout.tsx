@@ -6,14 +6,21 @@ import {
 } from "../helpers/workoutStorageHelper.ts";
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
+import { Season } from "../models/Season.ts";
 
 interface Props {
   onClose: () => void;
   workoutId: string; // Loads either a new workoutId if one doesn't exist, or uses the workoutId of existing workout
   workouts: Workout[];
+  currentSeason: Season;
 }
 
-const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
+const EditWorkout = ({
+  onClose,
+  workoutId,
+  workouts,
+  currentSeason,
+}: Props) => {
   // Used to prefill new workout with last workout details
   const lastWorkout = workouts[workouts.length - 1] as Workout | undefined;
   const defaultWorkout: Workout = {
@@ -131,7 +138,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
               <button
                 className="bg-amber-500 font-bold rounded-lg p-3 mt-2"
                 onClick={() => {
-                  saveWorkout(workoutData);
+                  saveWorkout(workoutData, currentSeason);
                   onClose();
                 }}
               >
@@ -142,7 +149,7 @@ const EditWorkout = ({ onClose, workoutId, workouts }: Props) => {
                 <button
                   className="bg-amber-500 font-bold rounded-lg p-3 mx-4 "
                   onClick={() => {
-                    deleteWorkout(workoutId);
+                    deleteWorkout(workoutId, currentSeason);
                     onClose();
                   }}
                 >
