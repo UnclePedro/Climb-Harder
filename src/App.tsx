@@ -13,11 +13,9 @@ function App() {
   const [currentSeasonId, setCurrentSeasonId] = useState<string>(
     seasons[seasons.length - 1].id
   );
+
   const [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
   const [editingWorkoutId, setEditingWorkoutId] = useState<string>();
-
-  // Need to create state to hold the current season ID being edited similar to editingWorkoutId
-  // Then use the season ID to find the season in the Seasons array
 
   const currentSeason: Season = seasons.find(
     (season) => season.id === currentSeasonId
