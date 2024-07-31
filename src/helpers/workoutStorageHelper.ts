@@ -1,5 +1,6 @@
 import { Season } from "../models/Season";
 import { TrainingType, Workout } from "../models/Workout";
+import { updateSeason } from "./seasonsStorageHelper";
 
 // If previous user, get existing workouts data. If new user, set empty workouts array.
 export const getWorkouts = (currentSeason: Season): Workout[] => {
@@ -27,7 +28,8 @@ export const saveWorkout = (workout: Workout, currentSeason: Season) => {
     // If the workout does not exist, add it
     updatedWorkouts = [...workouts, workout];
   }
-  localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
+  currentSeason.workouts = updatedWorkouts;
+  updateSeason(currentSeason);
 };
 
 export const deleteWorkout = (workoutId: string, currentSeason: Season) => {

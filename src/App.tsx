@@ -28,6 +28,7 @@ function App() {
       <EditSeasonNotes
         onClose={() => setDisplaySeasonNotes(false)}
         seasonNotes={seasonNotes}
+        currentSeason={currentSeason}
       />
     );
   if (editingWorkoutId)

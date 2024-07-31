@@ -24,7 +24,16 @@ export const getSeasons = (): Season[] => {
   return seasons;
 };
 
-// Selects specific season within the seasons array based on filtering by ID
+// Selects specific season within the seasons array by filtering by ID
 export const getSeason = (seasonId: string): Season => {
   return getSeasons().find((season) => season.id === seasonId) as Season;
+};
+
+export const updateSeason = (updatedSeason: Season) => {
+  const updatedSeasons = getSeasons().map((season) => {
+    if (season.id === updatedSeason.id) {
+      return updatedSeason;
+    } else return season;
+  });
+  localStorage.setItem("seasons", JSON.stringify(updatedSeasons));
 };
