@@ -7,15 +7,16 @@ export const getWorkouts = (currentSeason: Season): Workout[] => {
   return workouts;
 };
 
-export const saveWorkout = (updatedWorkout: Workout, currentSeason: Season) => {
-  currentSeason.workouts = [
-    ...getWorkouts(currentSeason).filter(
-      (existingWorkout) => existingWorkout.id !== updatedWorkout.id
-    ),
-    updatedWorkout,
-  ];
-  updateSeason(currentSeason);
-};
+export const saveWorkout = (updatedWorkout: Workout, currentSeason: Season) =>
+  updateSeason({
+    ...currentSeason,
+    workouts: [
+      ...getWorkouts(currentSeason).filter(
+        (existingWorkout) => existingWorkout.id !== updatedWorkout.id
+      ),
+      updatedWorkout,
+    ],
+  });
 
 export const deleteWorkout = (workoutId: string, currentSeason: Season) => {
   const updatedWorkouts = getWorkouts(currentSeason).filter(
