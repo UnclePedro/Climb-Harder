@@ -2,33 +2,18 @@ import { Season } from "../models/Season";
 import { TrainingType, Workout } from "../models/Workout";
 import { updateSeason } from "./seasonsStorageHelper";
 
-// If previous user, get existing workouts data. If new user, set empty workouts array.
 export const getWorkouts = (currentSeason: Season): Workout[] => {
   const workouts = currentSeason.workouts;
   return workouts;
 };
 
-export const saveWorkout = (workout: Workout, currentSeason: Season) => {
-  const workouts = getWorkouts(currentSeason);
-
-  // Check if the workout already exists by comparing the opened/editing workoutId with the workout array id's
-  const existingWorkout = workouts.find(
-    (savedWorkout: Workout) => savedWorkout.id === workout.id
-  );
-
-  // Holds array of workouts that reflects any updates made to existing workouts, or recieves new workoutout object
-  let updatedWorkouts;
-
-  if (existingWorkout) {
-    // The ternary operator updates the specific workout object if its id matches an existing workout.id; otherwise, it keeps the workout object unchanged to be added in else statement.
-    updatedWorkouts = workouts.map((savedWorkout: Workout) =>
-      savedWorkout.id === workout.id ? workout : savedWorkout
-    );
-  } else {
-    // If the workout does not exist, add it
-    updatedWorkouts = [...workouts, workout];
-  }
-  currentSeason.workouts = updatedWorkouts;
+export const saveWorkout = (updatedWorkout: Workout, currentSeason: Season) => {
+  currentSeason.workouts = [
+    ...getWorkouts(currentSeason).filter(
+      (existingWorkout) => existingWorkout.id !== updatedWorkout.id
+    ),
+    updatedWorkout,
+  ];
   updateSeason(currentSeason);
 };
 
