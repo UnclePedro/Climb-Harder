@@ -4,17 +4,17 @@ import EditSeasonNotes from "./components/EditSeasonNotes.tsx";
 import EditWorkout from "./components/EditWorkout.tsx";
 import { getWorkouts } from "./helpers/workoutStorageHelper.ts";
 import { getSeasonNotes } from "./helpers/seasonNotesStorageHelper.ts";
-import { getSeasons } from "./helpers/seasonsStorageHelper.ts";
+import { addSeason, getSeasons } from "./helpers/seasonsStorageHelper.ts";
 import { Season } from "./models/Season.ts";
 
 function App() {
-  const seasons = getSeasons();
-
-  const currentSeasonId = seasons[seasons.length - 1].id;
+  const [seasons, setSeasons] = useState(getSeasons());
   const [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
   const [editingWorkoutId, setEditingWorkoutId] = useState<string>();
 
-  const currentSeason: Season = seasons.find(
+  const currentSeasonId = seasons[seasons.length - 1].id;
+
+  const currentSeason: Season = getSeasons().find(
     (season) => season.id === currentSeasonId
   ) as Season;
   const workouts = getWorkouts(currentSeason);
@@ -44,6 +44,7 @@ function App() {
       onEditWorkout={(workoutId) => setEditingWorkoutId(workoutId)}
       workouts={workouts}
       currentSeason={currentSeason}
+      addSeason={() => setSeasons(addSeason())}
     />
   );
 }

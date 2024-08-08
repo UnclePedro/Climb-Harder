@@ -52,4 +52,5 @@ export const addSeason = () => {
 
   const updatedSeasons = [...getSeasons(), newSeason];
   localStorage.setItem("seasons", JSON.stringify(updatedSeasons));
+  return updatedSeasons;
 };

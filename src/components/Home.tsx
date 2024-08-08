@@ -3,7 +3,6 @@ import { Workout } from "../models/Workout";
 import QuoteGenerator from "./QuoteGenerator";
 import WorkoutList from "./WorkoutList";
 import { newId } from "../utils/helpers";
-import { addSeason } from "../helpers/seasonsStorageHelper";
 import { Season } from "../models/Season";
 
 interface Props {
@@ -11,6 +10,7 @@ interface Props {
   onEditWorkout: (workoutId: string) => void;
   workouts: Workout[];
   currentSeason: Season;
+  addSeason: () => void;
 }
 
 const Home = ({
@@ -18,6 +18,7 @@ const Home = ({
   onEditWorkout,
   workouts,
   currentSeason,
+  addSeason,
 }: Props) => {
   return (
     <>
@@ -46,9 +47,11 @@ const Home = ({
             >
               Goals & Achievements
             </button>
+            <div className="bg-amber-500 font-medium rounded-lg px-2 py-1 mt-3 w-24">
+              {currentSeason.name}
+            </div>
           </div>
 
-          <div>{currentSeason.name}</div>
           <div className="p-6 -mt-8">
             <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
           </div>
