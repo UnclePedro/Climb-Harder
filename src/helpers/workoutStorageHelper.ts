@@ -22,7 +22,10 @@ export const deleteWorkout = (workoutId: string, currentSeason: Season) => {
   const updatedWorkouts = getWorkouts(currentSeason).filter(
     (existingWorkout: Workout) => existingWorkout.id !== workoutId
   );
-  localStorage.setItem("workouts", JSON.stringify(updatedWorkouts));
+  updateSeason({
+    ...currentSeason,
+    workouts: updatedWorkouts,
+  });
 };
 
 export const getDate = () => {
