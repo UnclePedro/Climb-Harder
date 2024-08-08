@@ -10,10 +10,7 @@ import { Season } from "./models/Season.ts";
 function App() {
   const seasons = getSeasons();
 
-  const [currentSeasonId, setCurrentSeasonId] = useState<string>(
-    seasons[seasons.length - 1].id
-  );
-
+  const currentSeasonId = seasons[seasons.length - 1].id;
   const [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
   const [editingWorkoutId, setEditingWorkoutId] = useState<string>();
 
@@ -42,13 +39,12 @@ function App() {
     );
 
   return (
-    <>
-      <Home
-        seasonNotesOpen={() => setDisplaySeasonNotes(true)}
-        onEditWorkout={(workoutId) => setEditingWorkoutId(workoutId)}
-        workouts={workouts}
-      />
-    </>
+    <Home
+      seasonNotesOpen={() => setDisplaySeasonNotes(true)}
+      onEditWorkout={(workoutId) => setEditingWorkoutId(workoutId)}
+      workouts={workouts}
+      currentSeason={currentSeason}
+    />
   );
 }
 

@@ -23,6 +23,7 @@ const EditWorkout = ({
 }: Props) => {
   // Used to prefill new workout with last workout details
   const lastWorkout = workouts[workouts.length - 1] as Workout | undefined;
+
   const defaultWorkout: Workout = {
     id: workoutId,
     name: lastWorkout?.name ?? "Workout Name",

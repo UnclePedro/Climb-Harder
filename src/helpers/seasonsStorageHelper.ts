@@ -1,7 +1,7 @@
 import { Season } from "../models/Season";
 import { newId } from "../utils/helpers";
 
-const defaultSeason: Season[] = [
+const defaultSeasons: Season[] = [
   {
     id: newId(),
     name: "Season 1",
@@ -17,7 +17,7 @@ const defaultSeason: Season[] = [
 // Returns seasons array if exists, if null creates new empty season
 export const getSeasons = (): Season[] => {
   if (localStorage.getItem("seasons") === null) {
-    localStorage.setItem("seasons", JSON.stringify(defaultSeason));
+    localStorage.setItem("seasons", JSON.stringify(defaultSeasons));
   }
   const seasonsLocal = localStorage.getItem("seasons") as string;
   const seasons = JSON.parse(seasonsLocal) as Season[];
@@ -35,5 +35,21 @@ export const updateSeason = (updatedSeason: Season) => {
       return updatedSeason;
     } else return season;
   });
+  localStorage.setItem("seasons", JSON.stringify(updatedSeasons));
+};
+
+export const addSeason = () => {
+  const newSeason: Season = {
+    id: newId(),
+    name: `Season ${getSeasons().length + 1}`,
+    workouts: [],
+    seasonNotes: {
+      trainingFocuses: "",
+      goals: "",
+      achievements: "",
+    },
+  };
+
+  const updatedSeasons = [...getSeasons(), newSeason];
   localStorage.setItem("seasons", JSON.stringify(updatedSeasons));
 };
