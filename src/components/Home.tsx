@@ -29,9 +29,14 @@ const Home = ({
               <QuoteGenerator />
             </div>
             <div className="flex mt-4">
-              <h1 className="pt-6 text-2xl text-left font-bold">
-                Training Logbook - {currentSeason.name}
-              </h1>
+              <div>
+                <h1 className="pt-6 text-2xl text-left font-bold">
+                  Training Logbook
+                </h1>
+                <h1 className=" text-2xl text-left font-bold">
+                  - {currentSeason.name}
+                </h1>
+              </div>
               <div className="font-bold rounded-lg px-2 py-1 mt-3 w-18"></div>
               <button
                 className="bg-amber-500 font-medium rounded-full w-10 h-10 ml-6 mt-5"

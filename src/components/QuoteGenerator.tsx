@@ -183,6 +183,16 @@ const QuoteGenerator = () => {
       quote: "It does not matter how slowly you go as long as you do not stop.",
       author: "Confucius",
     },
+    {
+      quote: "He's got that dog in him.",
+      author: "Harry Armitage Bath",
+      source: "Harry",
+    },
+    {
+      quote: "It's a hundred million degrees right now!",
+      author: "Adam Ondra",
+      source: "unknown YouTube video",
+    },
   ];
 
   const getRandomQuote = () => {
@@ -196,7 +206,7 @@ const QuoteGenerator = () => {
   return (
     <>
       <p className="text-sm w-42">
-        {quote.quote} - '{quote.author}'
+        '{quote.quote}' - {quote.author}
       </p>
     </>
   );
