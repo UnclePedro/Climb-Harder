@@ -58,12 +58,14 @@ const Home = ({
           <div className="p-6 -mt-8">
             <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
           </div>
-          <button
-            className="bg-red-500 font-medium rounded-lg px-2 py-1 ml-6 mb-6"
-            onClick={() => addSeason()}
-          >
-            End Season
-          </button>
+          {workouts.length > 0 && (
+            <button
+              className="bg-red-500 font-medium rounded-lg px-2 py-1 ml-6 mb-6"
+              onClick={() => addSeason()}
+            >
+              End Season
+            </button>
+          )}
         </div>
       </Fade>
     </>
