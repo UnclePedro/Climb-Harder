@@ -59,7 +59,7 @@ const Home = ({
             <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
           </div>
           <button
-            className="bg-red-500 font-medium rounded-lg px-2 py-1 ml-6"
+            className="bg-red-500 font-medium rounded-lg px-2 py-1 ml-6 mb-6"
             onClick={() => addSeason()}
           >
             End Season
