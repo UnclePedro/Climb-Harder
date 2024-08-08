@@ -30,8 +30,9 @@ const Home = ({
             </div>
             <div className="flex mt-4">
               <h1 className="pt-6 text-2xl text-left font-bold">
-                Training Logbook
+                Training Logbook - {currentSeason.name}
               </h1>
+              <div className="font-bold rounded-lg px-2 py-1 mt-3 w-18"></div>
               <button
                 className="bg-amber-500 font-medium rounded-full w-10 h-10 ml-6 mt-5"
                 onClick={() => {
@@ -47,16 +48,13 @@ const Home = ({
             >
               Goals & Achievements
             </button>
-            <div className="bg-amber-500 font-medium rounded-lg px-2 py-1 mt-3 w-24">
-              {currentSeason.name}
-            </div>
           </div>
 
           <div className="p-6 -mt-8">
             <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
           </div>
           <button
-            className="bg-amber-500 font-medium rounded-lg px-2 py-1 m-3"
+            className="bg-red-500 font-medium rounded-lg px-2 py-1 ml-6"
             onClick={() => addSeason()}
           >
             End Season

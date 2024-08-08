@@ -39,6 +39,7 @@ export const updateSeason = (updatedSeason: Season) => {
 };
 
 export const addSeason = () => {
+  // Need to integrate double-check with user before ending current season. Render an "are you sure?" prompt, if yes, trigger addSeason. Prob handle this in Home instead
   const newSeason: Season = {
     id: newId(),
     name: `Season ${getSeasons().length + 1}`,

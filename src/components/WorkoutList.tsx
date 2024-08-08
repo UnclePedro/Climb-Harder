@@ -11,7 +11,7 @@ interface Props {
   onEditWorkout: (workoutId: string) => void;
 }
 
-const WorkoutList = ({ workouts, onEditWorkout: onEditWorkout }: Props) => {
+const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
   const [trainingTypeFilter, setTrainingTypeFilter] = useState<
     TrainingType | ""
   >("");
