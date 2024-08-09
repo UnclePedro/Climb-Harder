@@ -5,6 +5,7 @@ import {
   filterWorkouts,
   totalWorkoutTime,
 } from "../helpers/workoutStorageHelper";
+import { newId } from "../utils/helpers";
 
 interface Props {
   workouts: Workout[];
@@ -18,17 +19,27 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
 
   return (
     <>
-      <div className="bg-amber-200 bg-opacity-65 shadow-md rounded-lg w-fit">
+      <div className="bg-amber-200 bg-opacity-65 shadow-md rounded-lg min-w-80 w-fit">
         <p className="text-sm italic p-4">
-          Total time worked out this season:{" "}
+          Total time worked out:{" "}
           {totalWorkoutTime(filterWorkouts(workouts, trainingTypeFilter))} hours
         </p>
+        <div className="flex justify-end -mt-12 mr-4">
+          <button
+            className="bg-amber-500 font-medium rounded-full w-10 h-10 ml-6 mt-3"
+            onClick={() => {
+              onEditWorkout(newId());
+            }}
+          >
+            +
+          </button>
+        </div>
         <div className="pb-4">
           <select
             name="training-type"
             id="training-type"
             value={trainingTypeFilter}
-            className="flex w-10/12 sm:w-72 mx-3 p-3 h-12  bg-amber-300 bg-opacity-80 shadow-md rounded resize-y"
+            className="flex w-56 mx-3 p-3 h-12  bg-amber-300 bg-opacity-80 shadow-md rounded resize-y"
             onChange={(element) => {
               setTrainingTypeFilter(element.target.value as TrainingType);
             }}
