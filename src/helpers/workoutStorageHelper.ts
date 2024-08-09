@@ -54,9 +54,8 @@ export const filterWorkouts = (
   trainingTypeFilter: TrainingType | string
 ) => {
   if (trainingTypeFilter === "") {
-    console.log(trainingTypeFilter);
     return workouts;
-  } else console.log(trainingTypeFilter);
+  }
 
   return workouts.filter(
     (workout) => workout.trainingType === trainingTypeFilter

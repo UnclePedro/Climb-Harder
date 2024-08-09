@@ -193,6 +193,12 @@ const QuoteGenerator = () => {
       author: "Adam Ondra",
       source: "unknown YouTube video",
     },
+    {
+      quote:
+        "You can't look at a problem, you've gotta look through a problem.",
+      author: "Bugzy Malone",
+      source: "Movin'",
+    },
   ];
 
   const getRandomQuote = () => {
