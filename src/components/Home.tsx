@@ -80,7 +80,10 @@ const Home = ({
           {workouts.length > 0 && (
             <button
               className="bg-red-500 font-medium rounded-lg px-2 py-1 ml-6 mb-6"
-              onClick={() => addSeason()}
+              onClick={() => {
+                addSeason();
+                setViewingSeason(getSeasons()[getSeasons().length - 1].id); // Get updated list of seasons and set viewingSeason to the last season
+              }}
             >
               New Season
             </button>
