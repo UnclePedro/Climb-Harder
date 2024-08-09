@@ -28,7 +28,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
             name="training-type"
             id="training-type"
             value={trainingTypeFilter}
-            className="flex w-10/12 sm:w-72 mx-3 p-3 h-12  bg-amber-300 bg-opacity-70 shadow-md rounded resize-y"
+            className="flex w-10/12 sm:w-72 mx-3 p-3 h-12  bg-amber-300 bg-opacity-80 shadow-md rounded resize-y"
             onChange={(element) => {
               setTrainingTypeFilter(element.target.value as TrainingType);
             }}
@@ -47,7 +47,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
             key={workout.id}
             className="m-2"
             onClick={() => {
-              onEditWorkout(workout.id), console.log(workout.id);
+              onEditWorkout(workout.id);
             }}
           >
             <WorkoutTile

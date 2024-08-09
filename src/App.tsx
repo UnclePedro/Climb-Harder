@@ -2,9 +2,11 @@ import { useState } from "react";
 import Home from "./components/Home.tsx";
 import EditSeasonNotes from "./components/EditSeasonNotes.tsx";
 import EditWorkout from "./components/EditWorkout.tsx";
-import { getWorkouts } from "./helpers/workoutStorageHelper.ts";
-import { getSeasonNotes } from "./helpers/seasonNotesStorageHelper.ts";
-import { addSeason, getSeasons } from "./helpers/seasonsStorageHelper.ts";
+import {
+  addSeason,
+  getSeason,
+  getSeasons,
+} from "./helpers/seasonsStorageHelper.ts";
 import { Season } from "./models/Season.ts";
 
 function App() {
@@ -12,17 +14,20 @@ function App() {
   const [displaySeasonNotes, setDisplaySeasonNotes] = useState(false);
   const [editingWorkoutId, setEditingWorkoutId] = useState<string>();
 
-  const currentSeason: Season = getSeasons().find(
-    (season) => season.id === seasons[seasons.length - 1].id
-  ) as Season;
-  const workouts = getWorkouts(currentSeason);
-  const seasonNotes = getSeasonNotes(currentSeason);
+  const [viewingSeason, setViewingSeason] = useState(
+    getSeasons().find(
+      (season) => season.id === seasons[seasons.length - 1].id
+    ) as Season
+  );
+
+  const workouts = viewingSeason.workouts;
+  const seasonNotes = viewingSeason.seasonNotes;
 
   if (displaySeasonNotes)
     return (
       <EditSeasonNotes
         seasonNotes={seasonNotes}
-        currentSeason={currentSeason}
+        currentSeason={viewingSeason}
         onClose={() => setDisplaySeasonNotes(false)}
       />
     );
@@ -31,8 +36,11 @@ function App() {
       <EditWorkout
         workoutId={editingWorkoutId}
         workouts={workouts}
-        currentSeason={currentSeason}
-        onClose={() => setEditingWorkoutId(undefined)}
+        currentSeason={viewingSeason}
+        onClose={() => {
+          setEditingWorkoutId(undefined);
+          setViewingSeason(getSeason(viewingSeason.id));
+        }}
       />
     );
 
@@ -41,8 +49,11 @@ function App() {
       seasonNotesOpen={() => setDisplaySeasonNotes(true)}
       onEditWorkout={(workoutId) => setEditingWorkoutId(workoutId)}
       workouts={workouts}
-      currentSeason={currentSeason}
       addSeason={() => setSeasons(addSeason())}
+      setViewingSeason={(seasonId: string) =>
+        setViewingSeason(getSeason(seasonId))
+      }
+      viewingSeason={viewingSeason}
     />
   );
 }
