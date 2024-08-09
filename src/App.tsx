@@ -2,8 +2,6 @@ import { useState } from "react";
 import Home from "./components/Home.tsx";
 import EditSeasonNotes from "./components/EditSeasonNotes.tsx";
 import EditWorkout from "./components/EditWorkout.tsx";
-import { getWorkouts } from "./helpers/workoutStorageHelper.ts";
-import { getSeasonNotes } from "./helpers/seasonNotesStorageHelper.ts";
 import {
   addSeason,
   getSeason,
@@ -22,8 +20,8 @@ function App() {
     ) as Season
   );
 
-  const workouts = getWorkouts(viewingSeason);
-  const seasonNotes = getSeasonNotes(viewingSeason);
+  const workouts = viewingSeason.workouts;
+  const seasonNotes = viewingSeason.seasonNotes;
 
   if (displaySeasonNotes)
     return (
@@ -39,7 +37,10 @@ function App() {
         workoutId={editingWorkoutId}
         workouts={workouts}
         currentSeason={viewingSeason}
-        onClose={() => setEditingWorkoutId(undefined)}
+        onClose={() => {
+          setEditingWorkoutId(undefined);
+          setViewingSeason(getSeason(viewingSeason.id));
+        }}
       />
     );
 
