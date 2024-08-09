@@ -40,7 +40,7 @@ const Home = ({
                 <select
                   name="training-type"
                   id="training-type"
-                  className="font-bold text-2xl -ml-1 h-12 bg-opacity-0 bg-slate-50 "
+                  className="font-bold text-2xl h-12 bg-opacity-0 bg-slate-50 w-36"
                   value={viewingSeason.id}
                   onChange={(element) => {
                     setViewingSeason(element.target.value);
