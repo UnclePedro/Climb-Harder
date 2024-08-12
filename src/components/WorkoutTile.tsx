@@ -12,7 +12,7 @@ const WorkoutTile = ({ name, trainingType, date }: Props) => {
   const colors = {
     [TrainingType.Base]: "bg-sky-500",
     [TrainingType.Strength]: "bg-red-500",
-    [TrainingType.Power]: "bg-violet-500",
+    [TrainingType.Power]: "bg-yellow-400",
     [TrainingType.PowerEndurance]: "bg-green-500",
     [TrainingType.Performance]: "bg-pink-500",
   };

@@ -53,22 +53,24 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
           </select>
         </div>
 
-        {filterWorkouts(workouts, trainingTypeFilter).map((workout: any) => (
-          <button
-            key={workout.id}
-            className="m-2"
-            onClick={() => {
-              onEditWorkout(workout.id);
-            }}
-          >
-            <WorkoutTile
-              name={workout.name}
-              trainingType={workout.trainingType}
-              date={workout.date}
-              id={workout.id}
-            />
-          </button>
-        ))}
+        {filterWorkouts(workouts, trainingTypeFilter)
+          .map((workout: any) => (
+            <button
+              key={workout.id}
+              className="m-2"
+              onClick={() => {
+                onEditWorkout(workout.id);
+              }}
+            >
+              <WorkoutTile
+                name={workout.name}
+                trainingType={workout.trainingType}
+                date={workout.date}
+                id={workout.id}
+              />
+            </button>
+          ))
+          .reverse()}
       </div>
     </>
   );
