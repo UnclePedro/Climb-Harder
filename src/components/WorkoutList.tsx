@@ -20,7 +20,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
   return (
     <>
       <div className="bg-amber-200 bg-opacity-65 shadow-md rounded-lg min-w-80 w-fit">
-        <p className="text-sm italic p-4">
+        <p className="text-sm italic p-3">
           Total time worked out:{" "}
           {totalWorkoutTime(filterWorkouts(workouts, trainingTypeFilter))} hours
         </p>
@@ -34,12 +34,12 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
             +
           </button>
         </div>
-        <div className="pb-4">
+        <div className="pb-2">
           <select
             name="training-type"
             id="training-type"
             value={trainingTypeFilter}
-            className="flex w-56 mx-3 p-3 h-12  bg-amber-300 bg-opacity-80 shadow-md rounded resize-y"
+            className="flex w-56 mx-3 p-3 h-12 bg-amber-300 bg-opacity-80 shadow-md rounded resize-y"
             onChange={(element) => {
               setTrainingTypeFilter(element.target.value as TrainingType);
             }}

@@ -30,7 +30,7 @@ const Home = ({
             <div className="w-72">
               <QuoteGenerator />
             </div>
-            <div className="flex mt-4">
+            <div className="flex">
               <div>
                 <h1 className="pt-6 text-2xl text-left font-bold">
                   Training Logbook
@@ -54,14 +54,14 @@ const Home = ({
               </div>
             </div>
             <button
-              className="bg-amber-500 font-medium rounded-lg px-2 py-1 mt-3"
+              className="bg-amber-500 font-medium rounded-lg px-2 py-1 mt-1"
               onClick={() => seasonNotesOpen()}
             >
               Goals & Achievements
             </button>
             {workouts.length > 0 && (
               <button
-                className="bg-amber-500 font-medium rounded-lg px-2 py-1 ml-6 mb-6"
+                className="bg-amber-500 font-medium rounded-lg px-2 py-1 ml-4"
                 onClick={() => {
                   addSeason();
                   setViewingSeason(getSeasons()[getSeasons().length - 1].id); // Get updated list of seasons and set viewingSeason to the last season
