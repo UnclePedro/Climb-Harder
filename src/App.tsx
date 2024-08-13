@@ -8,6 +8,7 @@ import {
   getSeasons,
 } from "./helpers/seasonsStorageHelper.ts";
 import { Season } from "./models/Season.ts";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [seasons, setSeasons] = useState(getSeasons());
@@ -45,16 +46,19 @@ function App() {
     );
 
   return (
-    <Home
-      seasonNotesOpen={() => setDisplaySeasonNotes(true)}
-      onEditWorkout={(workoutId) => setEditingWorkoutId(workoutId)}
-      workouts={workouts}
-      addSeason={() => setSeasons(addSeason())}
-      setViewingSeason={(seasonId: string) =>
-        setViewingSeason(getSeason(seasonId))
-      }
-      viewingSeason={viewingSeason}
-    />
+    <>
+      <Analytics />
+      <Home
+        seasonNotesOpen={() => setDisplaySeasonNotes(true)}
+        onEditWorkout={(workoutId) => setEditingWorkoutId(workoutId)}
+        workouts={workouts}
+        addSeason={() => setSeasons(addSeason())}
+        setViewingSeason={(seasonId: string) =>
+          setViewingSeason(getSeason(seasonId))
+        }
+        viewingSeason={viewingSeason}
+      />
+    </>
   );
 }
 

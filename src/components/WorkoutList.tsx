@@ -39,7 +39,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
             name="training-type"
             id="training-type"
             value={trainingTypeFilter}
-            className="flex w-56 mx-3 p-3 h-12 bg-amber-300 bg-opacity-80 shadow-md rounded resize-y"
+            className="flex w-56 mx-3 p-3 mb-1 h-12 bg-amber-300 bg-opacity-80 shadow-md rounded resize-y"
             onChange={(element) => {
               setTrainingTypeFilter(element.target.value as TrainingType);
             }}
