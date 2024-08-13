@@ -1,6 +1,6 @@
 # Climb Harder
 
-Get stronger now at [climb-harder.vercel.app](https://climb-harder.vercel.app/)
+Get stronger now at [climb-harder.peterforsyth.dev](https://climb-harder.peterforsyth.dev/)
 
 Keep track of your workouts, goals and achievements across rock climbing seasons in one place.
 
