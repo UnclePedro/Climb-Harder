@@ -25,7 +25,7 @@ const Home = ({
   return (
     <>
       <Fade>
-        <div className="md:p-8">
+        <div className="sm:p-8">
           <div className="p-6 font-roboto">
             <div className="w-72">
               <QuoteGenerator />

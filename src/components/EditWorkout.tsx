@@ -71,6 +71,7 @@ const EditWorkout = ({
                 }}
                 className="w-full h-14 border border-gray-300 bg-amber-200 rounded p-3"
                 value={workoutData.name}
+                maxLength={30}
               />
 
               <p className="font-bold text-lg text-left mt-2">Training Type</p>

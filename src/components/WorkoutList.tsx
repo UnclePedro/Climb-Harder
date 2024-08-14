@@ -19,7 +19,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
 
   return (
     <>
-      <div className="bg-amber-200 bg-opacity-65 shadow-md rounded-lg min-w-80 w-fit">
+      <div className="bg-amber-200 bg-opacity-65 shadow-md p-1 pb-2 rounded-lg min-w-80 w-fit">
         <p className="text-sm italic p-3">
           Total time worked out:{" "}
           {totalWorkoutTime(filterWorkouts(workouts, trainingTypeFilter))} hours
@@ -39,7 +39,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
             name="training-type"
             id="training-type"
             value={trainingTypeFilter}
-            className="flex w-56 mx-3 p-3 mb-1 h-12 bg-amber-300 bg-opacity-80 shadow-md rounded resize-y"
+            className="flex w-56 mx-3 p-2 h-10 bg-amber-300 bg-opacity-80 shadow-md rounded resize-y"
             onChange={(element) => {
               setTrainingTypeFilter(element.target.value as TrainingType);
             }}
@@ -57,7 +57,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
           .map((workout: any) => (
             <button
               key={workout.id}
-              className="m-2"
+              className="m-1 mx-3 sm:m-2 w-11/12 sm:w-fit"
               onClick={() => {
                 onEditWorkout(workout.id);
               }}

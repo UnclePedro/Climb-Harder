@@ -184,7 +184,7 @@ const QuoteGenerator = () => {
       author: "Confucius",
     },
     {
-      quote: "He's got that dog in him.",
+      quote: "Take it to send-town.",
       author: "Harry Armitage Bath",
       source: "Harry",
     },

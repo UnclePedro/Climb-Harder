@@ -18,10 +18,12 @@ const WorkoutTile = ({ name, trainingType, date }: Props) => {
   };
 
   return (
-    <div className={`${colors[trainingType]} p-3 rounded-lg shadow-md`}>
-      <p className="text-xs">{date}</p>
-      <p className="font-bold">{name}</p>
-      <p>{trainingType}</p>
+    <div
+      className={`${colors[trainingType]} p-2 sm:p-3 rounded-lg justify-between shadow-md items-center flex sm:block`}
+    >
+      <p className="text-xs sm:text-sm font-bold">{name}</p>
+      <p className="hidden sm:block">{trainingType}</p>
+      <p className="text-xs px-18">{date}</p>
     </div>
   );
 };
