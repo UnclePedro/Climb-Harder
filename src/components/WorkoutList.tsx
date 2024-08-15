@@ -54,7 +54,12 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
         </div>
 
         {filterWorkouts(workouts, trainingTypeFilter)
-          .map((workout: any) => (
+          .sort(
+            (workoutA, workoutB) =>
+              new Date(workoutB.date).getTime() -
+              new Date(workoutA.date).getTime()
+          )
+          .map((workout: Workout) => (
             <button
               key={workout.id}
               className="m-1 mx-3 sm:m-2 w-11/12 sm:w-fit"
@@ -69,8 +74,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
                 id={workout.id}
               />
             </button>
-          ))
-          .reverse()}
+          ))}
       </div>
     </>
   );

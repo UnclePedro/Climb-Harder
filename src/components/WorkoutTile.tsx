@@ -1,10 +1,10 @@
 import { TrainingType } from "../models/Workout";
 
 interface Props {
-  name: String;
+  name: string;
   trainingType: TrainingType;
-  date: String;
-  id: String;
+  date: string;
+  id: string;
 }
 
 const WorkoutTile = ({ name, trainingType, date }: Props) => {
