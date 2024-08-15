@@ -10,11 +10,11 @@ interface Props {
 const WorkoutTile = ({ name, trainingType, date }: Props) => {
   // Object using TrainingType as key paired to string value to be inserted to tailwind as template literal
   const colors = {
-    [TrainingType.Base]: "bg-sky-500",
-    [TrainingType.Strength]: "bg-red-500",
-    [TrainingType.Power]: "bg-yellow-400",
-    [TrainingType.PowerEndurance]: "bg-green-500",
-    [TrainingType.Performance]: "bg-pink-500",
+    [TrainingType.Base]: "bg-[#5395BE]",
+    [TrainingType.Strength]: "bg-[#D9703D]",
+    [TrainingType.Power]: "bg-[#F8D55A]",
+    [TrainingType.PowerEndurance]: "bg-[#77AD62]",
+    [TrainingType.Performance]: "bg-[#E27EAB]",
   };
 
   return (
