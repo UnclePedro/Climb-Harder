@@ -78,7 +78,7 @@ const Home = ({
 
           <div className="ml-6">
             <button
-              className="bg-red-500 font-bold rounded-lg w-fit px-2 py-1 mb-4"
+              className="bg-red-500 font-bold text-xs rounded-lg w-fit px-2 py-1 mb-4"
               onClick={() => {
                 deleteSeason(viewingSeason.id);
                 setViewingSeason(getSeasons()[getSeasons().length - 1].id);

@@ -3,7 +3,7 @@ import { deleteWorkout, saveWorkout } from "../helpers/workoutStorageHelper.ts";
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Season } from "../models/Season.ts";
-import { formatDateForInput, getDate } from "../utils/helpers.ts";
+import { formatDateForInput } from "../utils/helpers.ts";
 
 interface Props {
   onClose: () => void;
@@ -27,7 +27,7 @@ const EditWorkout = ({
     trainingType: lastWorkout?.trainingType ?? TrainingType.Base,
     details: "",
     duration: 0,
-    date: getDate(),
+    date: new Date().getTime(),
   };
 
   // If the workoutId matches an existingWorkout.id from the workouts array, fill form state with that data. Or, set state to previous workout details and empty strings for a blank form

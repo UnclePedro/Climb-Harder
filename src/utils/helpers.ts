@@ -1,9 +1,5 @@
 export const newId = () => crypto.randomUUID();
 
-export const getDate = () => {
-  return new Date().getTime();
-};
-
 export const formatDateForInput = (timestamp: number) => {
   const date = new Date(timestamp);
   const year = date.getFullYear();
