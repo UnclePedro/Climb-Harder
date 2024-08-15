@@ -3,7 +3,7 @@ import { Workout } from "../models/Workout";
 import QuoteGenerator from "./QuoteGenerator";
 import WorkoutList from "./WorkoutList";
 import { Season } from "../models/Season";
-import { getSeasons } from "../helpers/seasonsStorageHelper";
+import { deleteSeason, getSeasons } from "../helpers/seasonsStorageHelper";
 
 interface Props {
   seasonNotesOpen: () => void;
@@ -74,6 +74,18 @@ const Home = ({
 
           <div className="p-6 -mt-8">
             <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
+          </div>
+
+          <div className="ml-6">
+            <button
+              className="bg-red-500 font-bold rounded-lg w-fit px-2 py-1"
+              onClick={() => {
+                deleteSeason(viewingSeason.id);
+                setViewingSeason(getSeasons()[getSeasons().length - 1].id);
+              }}
+            >
+              Delete Season
+            </button>
           </div>
         </div>
       </Fade>
