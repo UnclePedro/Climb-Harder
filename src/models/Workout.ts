@@ -4,7 +4,7 @@ export interface Workout {
   trainingType: TrainingType;
   details: string;
   duration: number; // recieved as minutes
-  date: string;
+  date: number;
 }
 
 export enum TrainingType {

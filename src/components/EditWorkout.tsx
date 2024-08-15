@@ -1,12 +1,9 @@
 import { Workout, TrainingType } from "../models/Workout.ts";
-import {
-  getDate,
-  deleteWorkout,
-  saveWorkout,
-} from "../helpers/workoutStorageHelper.ts";
+import { deleteWorkout, saveWorkout } from "../helpers/workoutStorageHelper.ts";
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Season } from "../models/Season.ts";
+import { formatDate, getDate } from "../utils/helpers.ts";
 
 interface Props {
   onClose: () => void;
@@ -128,13 +125,16 @@ const EditWorkout = ({
               <input
                 type="date"
                 onChange={(element) => {
+                  const dateTimestamp = new Date(
+                    element.target.value
+                  ).getTime(); // Convert to timestamp
                   setWorkoutData({
                     ...workoutData,
-                    date: element.target.value,
+                    date: dateTimestamp,
                   });
                 }}
                 className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-                value={workoutData.date}
+                value={formatDate(workoutData.date)} // Format the timestamp back to "YYYY-MM-DD" for display
               />
 
               <button

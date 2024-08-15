@@ -5,7 +5,7 @@ import {
   filterWorkouts,
   totalWorkoutTime,
 } from "../helpers/workoutStorageHelper";
-import { newId } from "../utils/helpers";
+import { formatDate, newId } from "../utils/helpers";
 
 interface Props {
   workouts: Workout[];
@@ -54,11 +54,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
         </div>
 
         {filterWorkouts(workouts, trainingTypeFilter)
-          .sort(
-            (workoutA, workoutB) =>
-              new Date(workoutB.date).getTime() -
-              new Date(workoutA.date).getTime()
-          )
+          .sort((workoutA, workoutB) => workoutB.date - workoutA.date)
           .map((workout: Workout) => (
             <button
               key={workout.id}
@@ -70,7 +66,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
               <WorkoutTile
                 name={workout.name}
                 trainingType={workout.trainingType}
-                date={workout.date}
+                date={formatDate(workout.date)}
                 id={workout.id}
               />
             </button>

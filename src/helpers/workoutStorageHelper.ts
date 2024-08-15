@@ -28,19 +28,6 @@ export const deleteWorkout = (workoutId: string, currentSeason: Season) => {
   });
 };
 
-export const getDate = () => {
-  let date, month, year;
-
-  date = new Date().getDate();
-  month = new Date().getMonth() + 1;
-  year = new Date().getFullYear();
-
-  date = date.toString().padStart(2, "0");
-  month = month.toString().padStart(2, "0");
-
-  return `${year}-${month}-${date}`;
-};
-
 export const totalWorkoutTime = (workouts: Workout[]) => {
   return workouts
     .reduce((accumulator: number, { duration }) => {
