@@ -5,7 +5,7 @@ import {
   filterWorkouts,
   totalWorkoutTime,
 } from "../helpers/workoutStorageHelper";
-import { formatDate, newId } from "../utils/helpers";
+import { formatDateForDisplay, newId } from "../utils/helpers";
 
 interface Props {
   workouts: Workout[];
@@ -66,7 +66,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
               <WorkoutTile
                 name={workout.name}
                 trainingType={workout.trainingType}
-                date={formatDate(workout.date)}
+                date={formatDateForDisplay(workout.date)}
                 id={workout.id}
               />
             </button>
