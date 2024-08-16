@@ -21,7 +21,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
     <>
       <div className="bg-amber-200 bg-opacity-65 shadow-md p-1 pb-2 rounded-lg min-w-80 w-fit">
         <p className="text-sm italic p-3">
-          Total time worked out:{" "}
+          Total training time:{" "}
           {totalWorkoutTime(filterWorkouts(workouts, trainingTypeFilter))} hours
         </p>
         <div className="flex justify-end -mt-12 mr-4">
