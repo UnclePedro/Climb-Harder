@@ -1,19 +1,6 @@
 import { Season } from "../models/Season";
 import { newId } from "../utils/helpers";
 
-const defaultSeasons: Season[] = [
-  {
-    id: newId(),
-    name: "Season 1",
-    workouts: [],
-    seasonNotes: {
-      trainingFocuses: "",
-      goals: "",
-      achievements: "",
-    },
-  },
-];
-
 // Returns seasons array if exists, if null creates new empty season
 export const getSeasons = (): Season[] => {
   if (localStorage.getItem("seasons") === null) {
@@ -23,6 +10,21 @@ export const getSeasons = (): Season[] => {
   const seasons = JSON.parse(seasonsLocal) as Season[];
   return seasons;
 };
+
+const defaultSeasons: Season[] = [
+  {
+    id: newId(),
+    name: `Season 1 - ${new Date().toLocaleString("default", {
+      month: "long",
+    })} ${new Date().getFullYear()}`,
+    workouts: [],
+    seasonNotes: {
+      trainingFocuses: "",
+      goals: "",
+      achievements: "",
+    },
+  },
+];
 
 // Selects specific season within the seasons array by filtering by ID
 export const getSeason = (seasonId: string): Season => {

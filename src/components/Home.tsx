@@ -76,7 +76,7 @@ const Home = ({
             <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
           </div>
 
-          <div className="ml-6">
+          <div className="ml-6 -mt-2">
             <button
               className="bg-red-500 font-bold text-xs rounded-lg w-fit px-2 py-1 mb-4"
               onClick={() => {
