@@ -17,7 +17,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
     <>
       <Fade>
         <div className="flex justify-center items-center">
-          <div className="p-6 font-roboto w-11/12 md:w-2/3 lg:w-1/2">
+          <div className="p-6 font-roboto w-11/12 h-11/12 md:w-2/3 lg:w-1/2">
             <div className="flex justify-end">
               <button
                 className="font-medium text-xl rounded-full w-10 h-10 bg-amber-500 "
@@ -35,7 +35,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   trainingFocuses: element.target.value,
                 });
               }}
-              className="w-full h-44 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-[20vh] md:h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={seasonNotesData.trainingFocuses}
             />
             <p className="font-bold text-lg text-left mt-2">Goals</p>
@@ -46,7 +46,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   goals: element.target.value,
                 });
               }}
-              className="w-full h-44 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-[20vh] md:h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={seasonNotesData.goals}
             />
 
@@ -58,7 +58,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   achievements: element.target.value,
                 });
               }}
-              className="w-full h-44 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-[20vh] md:h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={seasonNotesData.achievements}
             />
             <button
