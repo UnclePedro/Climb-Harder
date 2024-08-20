@@ -121,43 +121,49 @@ const EditWorkout = ({
                 value={workoutData.duration}
               />
 
-              <p className="font-bold text-lg text-left mt-2">Date</p>
-              <input
-                type="date"
-                onChange={(element) => {
-                  const dateTimestamp = new Date(
-                    element.target.value
-                  ).getTime(); // Convert to timestamp
-                  setWorkoutData({
-                    ...workoutData,
-                    date: dateTimestamp,
-                  });
-                }}
-                className="w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
-                value={formatDateForInput(workoutData.date)} // Format the timestamp back to "YYYY-MM-DD" for display
-              />
+              <div className="flex sm:block items-center justify-between">
+                <div>
+                  <p className="font-bold text-lg text-left mt-2">Date</p>
+                  <input
+                    type="date"
+                    onChange={(element) => {
+                      const dateTimestamp = new Date(
+                        element.target.value
+                      ).getTime(); // Convert to timestamp
+                      setWorkoutData({
+                        ...workoutData,
+                        date: dateTimestamp,
+                      });
+                    }}
+                    className="w-fit sm:w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+                    value={formatDateForInput(workoutData.date)} // Format the timestamp back to "YYYY-MM-DD" for display
+                  />
+                </div>
 
-              <button
-                className="bg-amber-500 font-bold rounded-lg p-3 mt-2"
-                onClick={() => {
-                  saveWorkout(workoutData, currentSeason);
-                  onClose();
-                }}
-              >
-                Save
-              </button>
+                <div className="ml-auto mt-8 sm:mt-4">
+                  <button
+                    className="bg-amber-500 font-bold rounded-lg p-3 mt-2"
+                    onClick={() => {
+                      saveWorkout(workoutData, currentSeason);
+                      onClose();
+                    }}
+                  >
+                    Save
+                  </button>
 
-              {isExistingWorkout && (
-                <button
-                  className="bg-amber-500 font-bold rounded-lg p-3 mx-4 "
-                  onClick={() => {
-                    deleteWorkout(workoutId, currentSeason);
-                    onClose();
-                  }}
-                >
-                  Delete
-                </button>
-              )}
+                  {isExistingWorkout && (
+                    <button
+                      className="bg-amber-500 font-bold rounded-lg p-3 -mr-1 mx-4"
+                      onClick={() => {
+                        deleteWorkout(workoutId, currentSeason);
+                        onClose();
+                      }}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>

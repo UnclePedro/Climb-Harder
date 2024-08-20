@@ -75,18 +75,19 @@ const Home = ({
           <div className="p-6 -mt-8">
             <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
           </div>
-
-          <div className="ml-6 -mt-2">
-            <button
-              className="bg-red-500 font-bold text-xs rounded-lg w-fit px-2 py-1 mb-4"
-              onClick={() => {
-                deleteSeason(viewingSeason.id);
-                setViewingSeason(getSeasons()[getSeasons().length - 1].id);
-              }}
-            >
-              Delete Season
-            </button>
-          </div>
+          {getSeasons().length > 1 && (
+            <div className="ml-6 -mt-2">
+              <button
+                className="bg-red-500 font-bold text-xs rounded-lg w-fit px-2 py-1 mb-4"
+                onClick={() => {
+                  deleteSeason(viewingSeason.id);
+                  setViewingSeason(getSeasons()[getSeasons().length - 1].id);
+                }}
+              >
+                Delete Season
+              </button>
+            </div>
+          )}
         </div>
       </Fade>
     </>
