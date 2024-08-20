@@ -18,7 +18,15 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
       <Fade>
         <div className="flex justify-center items-center">
           <div className="p-6 font-roboto w-11/12 md:w-2/3 lg:w-1/2">
-            <p className="font-bold text-lg text-left pt-3">Training Focuses</p>
+            <div className="flex justify-end">
+              <button
+                className="font-medium text-xl rounded-full w-10 h-10 bg-amber-500 "
+                onClick={onClose}
+              >
+                x
+              </button>
+            </div>
+            <p className="font-bold text-lg text-left mt-2">Training Focuses</p>
 
             <textarea
               onChange={(element) => {
@@ -27,10 +35,10 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   trainingFocuses: element.target.value,
                 });
               }}
-              className="w-full h-40 md:h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={seasonNotesData.trainingFocuses}
             />
-            <p className="font-bold text-lg text-left pt-3">Goals</p>
+            <p className="font-bold text-lg text-left mt-2">Goals</p>
             <textarea
               onChange={(element) => {
                 setSeasonNotesData({
@@ -38,11 +46,11 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   goals: element.target.value,
                 });
               }}
-              className="w-full h-40 md:h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={seasonNotesData.goals}
             />
 
-            <p className="font-bold text-lg text-left pt-3">Achievements</p>
+            <p className="font-bold text-lg text-left mt-2">Achievements</p>
             <textarea
               onChange={(element) => {
                 setSeasonNotesData({
@@ -50,11 +58,11 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   achievements: element.target.value,
                 });
               }}
-              className="w-full h-40 md:h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+              className="w-full h-52 border border-gray-300 bg-amber-200 rounded resize-y p-3"
               value={seasonNotesData.achievements}
             />
             <button
-              className="bg-amber-500 font-bold rounded-lg p-3 mt-2 "
+              className="bg-amber-500 font-bold rounded-lg p-3 mt-3 "
               onClick={() => {
                 saveSeasonNotes(seasonNotesData, currentSeason);
                 onClose();

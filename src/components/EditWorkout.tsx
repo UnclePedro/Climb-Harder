@@ -101,7 +101,7 @@ const EditWorkout = ({
                     details: element.target.value,
                   });
                 }}
-                className="w-full h-56 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+                className="w-full h-80 border border-gray-300 bg-amber-200 rounded resize-y p-3"
                 value={workoutData.details}
               />
 
