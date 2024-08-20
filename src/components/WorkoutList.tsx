@@ -53,7 +53,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
           </select>
         </div>
 
-        {filterWorkouts(workouts, trainingTypeFilter)
+        {[...filterWorkouts(workouts, trainingTypeFilter)]
           .sort((workoutA, workoutB) => workoutB.date - workoutA.date)
           .map((workout: Workout) => (
             <button

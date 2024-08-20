@@ -48,8 +48,8 @@ const EditWorkout = ({
     <>
       <Fade>
         <div className="flex justify-center items-center">
-          <div className="p-6 font-roboto w-11/12 md:w-2/3 lg:w-1/2">
-            <div className="flex justify-end">
+          <div className="p-3 sm:p-6 font-roboto w-11/12 sm:w-4/5 lg:w-2/3">
+            <div className="flex justify-end mt-3">
               <button
                 className="font-medium text-xl rounded-full w-10 h-10 bg-amber-500 "
                 onClick={onClose}
@@ -58,7 +58,7 @@ const EditWorkout = ({
               </button>
             </div>
             <div className="">
-              <p className="font-bold text-lg text-left mt-2">Workout Name</p>
+              <p className="font-bold text-lg text-left">Workout Name</p>
               <input
                 onChange={(element) => {
                   setWorkoutData({
