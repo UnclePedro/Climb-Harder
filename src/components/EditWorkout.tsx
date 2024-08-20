@@ -135,12 +135,12 @@ const EditWorkout = ({
                         date: dateTimestamp,
                       });
                     }}
-                    className="w-fit sm:w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
+                    className="w-full sm:w-full h-14 border border-gray-300 bg-amber-200 rounded resize-y p-3"
                     value={formatDateForInput(workoutData.date)} // Format the timestamp back to "YYYY-MM-DD" for display
                   />
                 </div>
 
-                <div className="ml-auto mt-8 sm:mt-4">
+                <div className="mt-8 sm:mt-3">
                   <button
                     className="bg-amber-500 font-bold rounded-lg p-3 mt-2"
                     onClick={() => {
@@ -153,7 +153,7 @@ const EditWorkout = ({
 
                   {isExistingWorkout && (
                     <button
-                      className="bg-amber-500 font-bold rounded-lg p-3 -mr-1 mx-4"
+                      className="bg-amber-500 font-bold rounded-lg p-3 ml-4"
                       onClick={() => {
                         deleteWorkout(workoutId, currentSeason);
                         onClose();

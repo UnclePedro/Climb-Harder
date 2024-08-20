@@ -75,6 +75,7 @@ const Home = ({
           <div className="p-6 -mt-8">
             <WorkoutList workouts={workouts} onEditWorkout={onEditWorkout} />
           </div>
+
           {getSeasons().length > 1 && (
             <div className="ml-6 -mt-2">
               <button
