@@ -37,8 +37,8 @@ const Home = ({
                 </h1>
 
                 <select
-                  name="training-type"
-                  id="training-type"
+                  name="select-season"
+                  id="select-season"
                   className="font-bold text-2xl flex h-12 bg-opacity-0 bg-slate-50"
                   value={viewingSeason.id}
                   onChange={(element) => {
