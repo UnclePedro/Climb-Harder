@@ -3,6 +3,7 @@ import { TrainingType, Workout } from "../models/Workout";
 import WorkoutTile from "./WorkoutTile";
 import {
   filterWorkouts,
+  getWeekNumber,
   totalWorkoutTime,
 } from "../helpers/workoutStorageHelper";
 import { formatDateForDisplay, newId } from "../utils/helpers";
@@ -16,6 +17,16 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
   const [trainingTypeFilter, setTrainingTypeFilter] = useState<
     TrainingType | ""
   >("");
+
+  // Group workouts by week
+  const groupedWorkouts: { [week: string]: Workout[] } = {};
+  filterWorkouts(workouts, trainingTypeFilter).forEach((workout) => {
+    const week = getWeekNumber(workouts, workout);
+    if (!groupedWorkouts[week]) {
+      groupedWorkouts[week] = [];
+    }
+    groupedWorkouts[week].push(workout);
+  });
 
   return (
     <>
@@ -53,24 +64,31 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
           </select>
         </div>
 
-        {[...filterWorkouts(workouts, trainingTypeFilter)]
-          .sort((workoutA, workoutB) => workoutB.date - workoutA.date)
-          .map((workout: Workout) => (
-            <button
-              key={workout.id}
-              className="m-1 mx-3 sm:m-2 w-11/12 sm:w-fit"
-              onClick={() => {
-                onEditWorkout(workout.id);
-              }}
-            >
-              <WorkoutTile
-                name={workout.name}
-                trainingType={workout.trainingType}
-                date={formatDateForDisplay(workout.date)}
-                id={workout.id}
-              />
-            </button>
-          ))}
+        {Object.keys(groupedWorkouts)
+          .map((week) => (
+            <div key={week} className="m-1 mx-3 sm:m-2 w-11/12 sm:w-fit">
+              <p className="text-sm font-bold mt-4">{week}</p>
+              {groupedWorkouts[week]
+                .sort((workoutA, workoutB) => workoutB.date - workoutA.date)
+                .map((workout) => (
+                  <button
+                    key={workout.id}
+                    className="w-full"
+                    onClick={() => {
+                      onEditWorkout(workout.id);
+                    }}
+                  >
+                    <WorkoutTile
+                      name={workout.name}
+                      trainingType={workout.trainingType}
+                      date={formatDateForDisplay(workout.date)}
+                      id={workout.id}
+                    />
+                  </button>
+                ))}
+            </div>
+          ))
+          .reverse()}
       </div>
     </>
   );

@@ -61,8 +61,11 @@ export const addSeason = () => {
 };
 
 export const deleteSeason = (seasonId: string) => {
-  const updatedSeasons = getSeasons().filter(
+  let updatedSeasons = getSeasons().filter(
     (existingSeason: Season) => existingSeason.id !== seasonId
   );
+  if (updatedSeasons.length === 0) {
+    updatedSeasons = defaultSeasons;
+  }
   localStorage.setItem("seasons", JSON.stringify(updatedSeasons));
 };

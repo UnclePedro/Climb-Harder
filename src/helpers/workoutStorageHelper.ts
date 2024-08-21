@@ -48,3 +48,21 @@ export const filterWorkouts = (
     (workout) => workout.trainingType === trainingTypeFilter
   );
 };
+
+export const getWeekNumber = (workouts: Workout[], workout: Workout) => {
+  const firstWorkoutDate = new Date(
+    workouts.reduce((firstWorkout, currentWorkout) =>
+      currentWorkout.date < firstWorkout.date ? currentWorkout : firstWorkout
+    ).date
+  );
+  const weekNumber =
+    Math.floor(
+      (new Date(workout.date).getTime() - firstWorkoutDate.getTime()) /
+        (1000 * 60 * 60 * 24 * 7)
+    ) + 1;
+  return `Week ${weekNumber}`;
+};
+
+// I need to group the workouts based on 7 days between each workout. Week 1, Week 2 etc.
+// Create an array that holds objects for each week with the corresponding workouts
+// Need to run a maths operation, and based on the result, push each workout where it needs to go
