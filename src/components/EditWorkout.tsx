@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Season } from "../models/Season.ts";
 import { formatDateForInput } from "../utils/helpers.ts";
+import UserConfirmation from "./UserConfirmation.tsx";
 
 interface Props {
   onClose: () => void;
@@ -43,6 +44,7 @@ const EditWorkout = ({
 
   // Used to hold data of the new or existing workout being edited, then passed to onSave
   const [workoutData, setWorkoutData] = useState<Workout>(workoutToEdit);
+  const [displayUserConfirmation, setDisplayUserConfirmation] = useState(false);
 
   return (
     <>
@@ -155,12 +157,21 @@ const EditWorkout = ({
                     <button
                       className="bg-amber-500 font-bold rounded-lg p-3 ml-4"
                       onClick={() => {
-                        deleteWorkout(workoutId, currentSeason);
-                        onClose();
+                        setDisplayUserConfirmation(true);
                       }}
                     >
                       Delete
                     </button>
+                  )}
+                  {displayUserConfirmation && (
+                    <UserConfirmation
+                      userYes={() => (
+                        deleteWorkout(workoutId, currentSeason),
+                        onClose(),
+                        setDisplayUserConfirmation(false)
+                      )}
+                      userNo={() => setDisplayUserConfirmation(false)}
+                    />
                   )}
                 </div>
               </div>

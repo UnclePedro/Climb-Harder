@@ -83,7 +83,7 @@ const Home = ({
 
             <div className="ml-6 -mt-2">
               <button
-                className="bg-red-500 font-bold text-xs rounded-lg w-fit px-2 py-1 mb-4"
+                className="bg-[#D9703D] font-bold text-xs rounded-lg w-fit px-2 py-1 mb-4"
                 onClick={() => {
                   setDisplayUserConfirmation(true);
                 }}
