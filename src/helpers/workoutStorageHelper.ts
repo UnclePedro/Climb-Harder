@@ -36,6 +36,7 @@ export const totalWorkoutTime = (workouts: Workout[]) => {
     .toFixed(2);
 };
 
+// Filter workouts based on TrainingType
 export const filterWorkouts = (
   workouts: Workout[],
   trainingTypeFilter: TrainingType | string
@@ -49,6 +50,7 @@ export const filterWorkouts = (
   );
 };
 
+// Calculate week number between first and subsequent workouts
 export const getWeekNumber = (workouts: Workout[], workout: Workout) => {
   const firstWorkoutDate = new Date(
     workouts.reduce((firstWorkout, currentWorkout) =>
@@ -63,6 +65,27 @@ export const getWeekNumber = (workouts: Workout[], workout: Workout) => {
   return `Week ${weekNumber}`;
 };
 
-// I need to group the workouts based on 7 days between each workout. Week 1, Week 2 etc.
-// Create an array that holds objects for each week with the corresponding workouts
-// Need to run a maths operation, and based on the result, push each workout where it needs to go
+// Create array of workouts grouped by week, as their own nested array, then sort workouts by date within their week groups
+export const workoutsByWeek = (
+  workouts: Workout[],
+  trainingTypeFilter: TrainingType | string
+): { week: string; workouts: Workout[] }[] => {
+  return filterWorkouts(workouts, trainingTypeFilter)
+    .reduce((acc, workout) => {
+      const week = getWeekNumber(workouts, workout);
+      let workoutsWeekGroup = acc.find((group) => group.week === week);
+      if (!workoutsWeekGroup) {
+        workoutsWeekGroup = { week, workouts: [] };
+        acc.push(workoutsWeekGroup);
+      }
+      workoutsWeekGroup.workouts.push(workout);
+
+      // Sort workouts within the current week in reverse chronological order
+      workoutsWeekGroup.workouts.sort(
+        (workoutA, workoutB) => workoutB.date - workoutA.date
+      );
+
+      return acc;
+    }, [] as { week: string; workouts: Workout[] }[])
+    .sort((a, b) => b.workouts[0].date - a.workouts[0].date);
+};

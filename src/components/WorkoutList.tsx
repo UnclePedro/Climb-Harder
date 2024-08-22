@@ -3,8 +3,8 @@ import { TrainingType, Workout } from "../models/Workout";
 import WorkoutTile from "./WorkoutTile";
 import {
   filterWorkouts,
-  getWeekNumber,
   totalWorkoutTime,
+  workoutsByWeek,
 } from "../helpers/workoutStorageHelper";
 import { formatDateForDisplay, newId } from "../utils/helpers";
 
@@ -17,30 +17,6 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
   const [trainingTypeFilter, setTrainingTypeFilter] = useState<
     TrainingType | ""
   >("");
-
-  // Group workouts by week
-  const groupedWorkouts: { [week: string]: Workout[] } = {};
-  filterWorkouts(workouts, trainingTypeFilter).forEach((workout) => {
-    const week = getWeekNumber(workouts, workout);
-    if (!groupedWorkouts[week]) {
-      groupedWorkouts[week] = [];
-    }
-    groupedWorkouts[week].push(workout);
-  });
-
-  // Sort workouts within each week
-  const sortedGroupedWorkouts = Object.keys(groupedWorkouts)
-    .sort((weekA, weekB) => {
-      const dateA = groupedWorkouts[weekA][0].date;
-      const dateB = groupedWorkouts[weekB][0].date;
-      return dateB - dateA; // Reverse chronological order
-    })
-    .reduce((acc, week) => {
-      acc[week] = [...groupedWorkouts[week]].sort(
-        (workoutA, workoutB) => workoutB.date - workoutA.date
-      );
-      return acc;
-    }, {} as { [week: string]: Workout[] });
 
   return (
     <>
@@ -78,27 +54,34 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
           </select>
         </div>
 
-        {Object.keys(sortedGroupedWorkouts).map((week) => (
-          <div key={week} className="m-1 mx-3 sm:m-2 w-11/12 sm:w-fit">
-            <p className="text-sm font-bold mt-3 sm:pl-1 sm:w-18">{week}</p>
-            {sortedGroupedWorkouts[week].map((workout) => (
-              <button
-                key={workout.id}
-                className="w-full sm:w-fit"
-                onClick={() => {
-                  onEditWorkout(workout.id);
-                }}
-              >
-                <WorkoutTile
-                  name={workout.name}
-                  trainingType={workout.trainingType}
-                  date={formatDateForDisplay(workout.date)}
-                  id={workout.id}
-                />
-              </button>
-            ))}
-          </div>
-        ))}
+        {workoutsByWeek(workouts, trainingTypeFilter).map(
+          (workoutsWeekGroup) => (
+            <div
+              key={workoutsWeekGroup.week}
+              className="m-1 mx-3 sm:m-2 w-11/12 sm:w-fit"
+            >
+              <p className="text-sm font-bold mt-3 sm:pl-1 sm:w-18">
+                {workoutsWeekGroup.week}
+              </p>
+              {workoutsWeekGroup.workouts.map((workout) => (
+                <button
+                  key={workout.id}
+                  className="w-full sm:w-fit"
+                  onClick={() => {
+                    onEditWorkout(workout.id);
+                  }}
+                >
+                  <WorkoutTile
+                    name={workout.name}
+                    trainingType={workout.trainingType}
+                    date={formatDateForDisplay(workout.date)}
+                    id={workout.id}
+                  />
+                </button>
+              ))}
+            </div>
+          )
+        )}
       </div>
     </>
   );
