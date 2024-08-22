@@ -199,6 +199,12 @@ const QuoteGenerator = () => {
       author: "Bugzy Malone",
       source: "Movin'",
     },
+    {
+      quote:
+        "I'm tellin' my bro don't quit. Put in the work and your time will come",
+      author: "Central Cee",
+      source: "Tension",
+    },
   ];
 
   const getRandomQuote = () => {

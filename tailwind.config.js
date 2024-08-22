@@ -7,7 +7,7 @@ export default {
         roboto: ["Roboto", "sans-serif"],
       },
       backgroundImage: {
-        "hero-pattern": "url('./src/assets/SVG - Topographic Lines 04.svg')",
+        topography: "url('./src/assets/SVG - Topographic Lines 04.svg')",
       },
     },
   },
