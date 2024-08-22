@@ -80,7 +80,7 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
 
         {Object.keys(sortedGroupedWorkouts).map((week) => (
           <div key={week} className="m-1 mx-3 sm:m-2 w-11/12 sm:w-fit">
-            <p className="text-sm font-bold mt-4 sm:pl-1 sm:w-18">{week}</p>
+            <p className="text-sm font-bold mt-3 sm:pl-1 sm:w-18">{week}</p>
             {sortedGroupedWorkouts[week].map((workout) => (
               <button
                 key={workout.id}
