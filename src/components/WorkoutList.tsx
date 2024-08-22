@@ -4,6 +4,7 @@ import WorkoutTile from "./WorkoutTile";
 import {
   filterWorkouts,
   totalWorkoutTime,
+  workoutsByWeek,
 } from "../helpers/workoutStorageHelper";
 import { formatDateForDisplay, newId } from "../utils/helpers";
 
@@ -53,24 +54,34 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
           </select>
         </div>
 
-        {[...filterWorkouts(workouts, trainingTypeFilter)]
-          .sort((workoutA, workoutB) => workoutB.date - workoutA.date)
-          .map((workout: Workout) => (
-            <button
-              key={workout.id}
+        {workoutsByWeek(workouts, trainingTypeFilter).map(
+          (workoutsWeekGroup) => (
+            <div
+              key={workoutsWeekGroup.week}
               className="m-1 mx-3 sm:m-2 w-11/12 sm:w-fit"
-              onClick={() => {
-                onEditWorkout(workout.id);
-              }}
             >
-              <WorkoutTile
-                name={workout.name}
-                trainingType={workout.trainingType}
-                date={formatDateForDisplay(workout.date)}
-                id={workout.id}
-              />
-            </button>
-          ))}
+              <p className="text-sm font-bold mt-3 sm:pl-1 sm:w-18">
+                {workoutsWeekGroup.week}
+              </p>
+              {workoutsWeekGroup.workouts.map((workout) => (
+                <button
+                  key={workout.id}
+                  className="w-full sm:w-fit"
+                  onClick={() => {
+                    onEditWorkout(workout.id);
+                  }}
+                >
+                  <WorkoutTile
+                    name={workout.name}
+                    trainingType={workout.trainingType}
+                    date={formatDateForDisplay(workout.date)}
+                    id={workout.id}
+                  />
+                </button>
+              ))}
+            </div>
+          )
+        )}
       </div>
     </>
   );

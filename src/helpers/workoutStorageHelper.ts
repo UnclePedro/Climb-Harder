@@ -36,6 +36,7 @@ export const totalWorkoutTime = (workouts: Workout[]) => {
     .toFixed(2);
 };
 
+// Filter workouts based on TrainingType
 export const filterWorkouts = (
   workouts: Workout[],
   trainingTypeFilter: TrainingType | string
@@ -47,4 +48,44 @@ export const filterWorkouts = (
   return workouts.filter(
     (workout) => workout.trainingType === trainingTypeFilter
   );
+};
+
+// Calculate week number between first and subsequent workouts
+export const getWeekNumber = (workouts: Workout[], workout: Workout) => {
+  const firstWorkoutDate = new Date(
+    workouts.reduce((firstWorkout, currentWorkout) =>
+      currentWorkout.date < firstWorkout.date ? currentWorkout : firstWorkout
+    ).date
+  );
+  const weekNumber =
+    Math.floor(
+      (new Date(workout.date).getTime() - firstWorkoutDate.getTime()) /
+        (1000 * 60 * 60 * 24 * 7)
+    ) + 1;
+  return `Week ${weekNumber}`;
+};
+
+// Create array of workouts grouped by week, as their own nested array, then sort workouts by date within their week groups
+export const workoutsByWeek = (
+  workouts: Workout[],
+  trainingTypeFilter: TrainingType | string
+): { week: string; workouts: Workout[] }[] => {
+  return filterWorkouts(workouts, trainingTypeFilter)
+    .reduce((acc, workout) => {
+      const week = getWeekNumber(workouts, workout);
+      let workoutsWeekGroup = acc.find((group) => group.week === week);
+      if (!workoutsWeekGroup) {
+        workoutsWeekGroup = { week, workouts: [] };
+        acc.push(workoutsWeekGroup);
+      }
+      workoutsWeekGroup.workouts.push(workout);
+
+      // Sort workouts within the current week in reverse chronological order
+      workoutsWeekGroup.workouts.sort(
+        (workoutA, workoutB) => workoutB.date - workoutA.date
+      );
+
+      return acc;
+    }, [] as { week: string; workouts: Workout[] }[])
+    .sort((a, b) => b.workouts[0].date - a.workouts[0].date);
 };

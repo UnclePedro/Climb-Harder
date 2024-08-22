@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Season } from "../models/Season.ts";
 import { formatDateForInput } from "../utils/helpers.ts";
+import UserConfirmation from "./UserConfirmation.tsx";
 
 interface Props {
   onClose: () => void;
@@ -43,12 +44,13 @@ const EditWorkout = ({
 
   // Used to hold data of the new or existing workout being edited, then passed to onSave
   const [workoutData, setWorkoutData] = useState<Workout>(workoutToEdit);
+  const [displayUserConfirmation, setDisplayUserConfirmation] = useState(false);
 
   return (
     <>
       <Fade>
         <div className="flex justify-center items-center">
-          <div className="p-3 sm:p-6 font-roboto w-11/12 sm:w-4/5 lg:w-2/3">
+          <div className="p-3 sm:p-6 font-roboto w-11/12 sm:w-4/5 lg:w-1/2">
             <div className="flex justify-end mt-3">
               <button
                 className="font-medium text-xl rounded-full w-10 h-10 bg-amber-500 "
@@ -57,7 +59,7 @@ const EditWorkout = ({
                 x
               </button>
             </div>
-            <div className="">
+            <div>
               <p className="font-bold text-lg text-left">Workout Name</p>
               <input
                 onChange={(element) => {
@@ -155,12 +157,21 @@ const EditWorkout = ({
                     <button
                       className="bg-amber-500 font-bold rounded-lg p-3 ml-4"
                       onClick={() => {
-                        deleteWorkout(workoutId, currentSeason);
-                        onClose();
+                        setDisplayUserConfirmation(true);
                       }}
                     >
                       Delete
                     </button>
+                  )}
+                  {displayUserConfirmation && (
+                    <UserConfirmation
+                      userYes={() => (
+                        deleteWorkout(workoutId, currentSeason),
+                        onClose(),
+                        setDisplayUserConfirmation(false)
+                      )}
+                      userNo={() => setDisplayUserConfirmation(false)}
+                    />
                   )}
                 </div>
               </div>
