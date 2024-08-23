@@ -3,10 +3,6 @@ import { useState } from "react";
 const QuoteGenerator = () => {
   const quotesArray = [
     {
-      quote: "The best way to predict the future is to create it.",
-      author: "Peter Drucker",
-    },
-    {
       quote:
         "A comfort zone is a beautiful place, but nothing ever grows there.",
       author: "John Assaraf",
@@ -25,19 +21,9 @@ const QuoteGenerator = () => {
       author: "William James",
     },
     {
-      quote:
-        "The only limit to our realization of tomorrow is our doubts of today.",
-      author: "Franklin D. Roosevelt",
-    },
-    {
-      quote: "In the end, we only regret the chances we didn’t take.",
-      author: "Lewis Carroll",
-    },
-    {
       quote: "Do what you can, with what you have, where you are.",
       author: "Theodore Roosevelt",
     },
-    { quote: "Dream big and dare to fail.", author: "Norman Vaughan" },
     {
       quote:
         "Success is not final, failure is not fatal: It is the courage to continue that counts.",
@@ -49,15 +35,6 @@ const QuoteGenerator = () => {
       author: "Ralph Waldo Emerson",
     },
     {
-      quote:
-        "Happiness is not something ready made. It comes from your own actions.",
-      author: "Dalai Lama",
-    },
-    {
-      quote: "The only way to do great work is to love what you do.",
-      author: "Steve Jobs",
-    },
-    {
       quote: "Don’t watch the clock; do what it does. Keep going.",
       author: "Sam Levenson",
     },
@@ -66,26 +43,12 @@ const QuoteGenerator = () => {
       author: "Steve Jobs",
     },
     {
-      quote: "You only live once, but if you do it right, once is enough.",
-      author: "Mae West",
-    },
-    {
       quote: "Start where you are. Use what you have. Do what you can.",
       author: "Arthur Ashe",
     },
-    { quote: "The best revenge is massive success.", author: "Frank Sinatra" },
     {
       quote: "The only impossible journey is the one you never begin.",
       author: "Tony Robbins",
-    },
-    {
-      quote: "Life is what happens when you're busy making other plans.",
-      author: "John Lennon",
-    },
-    {
-      quote:
-        "Keep your face always toward the sunshine—and shadows will fall behind you.",
-      author: "Walt Whitman",
     },
     { quote: "What we think, we become.", author: "Buddha" },
     {
@@ -96,7 +59,6 @@ const QuoteGenerator = () => {
       quote: "Strive not to be a success, but rather to be of value.",
       author: "Albert Einstein",
     },
-    { quote: "The purpose of our lives is to be happy.", author: "Dalai Lama" },
     {
       quote:
         "You are never too old to set another goal or to dream a new dream.",
@@ -116,18 +78,10 @@ const QuoteGenerator = () => {
     },
     {
       quote:
-        "To succeed in life, you need two things: ignorance and confidence.",
-      author: "Mark Twain",
-    },
-    {
-      quote:
         "Failure will never overtake me if my determination to succeed is strong enough.",
       author: "Og Mandino",
     },
-    { quote: "Every moment is a fresh beginning.", author: "T.S. Eliot" },
     { quote: "We become what we think about.", author: "Earl Nightingale" },
-    { quote: "I can, therefore I am.", author: "Simone Weil" },
-    { quote: "If you can dream it, you can do it.", author: "Walt Disney" },
     {
       quote: "It always seems impossible until it’s done.",
       author: "Nelson Mandela",
@@ -139,14 +93,6 @@ const QuoteGenerator = () => {
     {
       quote: "With the new day comes new strength and new thoughts.",
       author: "Eleanor Roosevelt",
-    },
-    {
-      quote: "Don't be afraid to give up the good to go for the great.",
-      author: "John D. Rockefeller",
-    },
-    {
-      quote: "Believe you can and you're halfway there.",
-      author: "Theodore Roosevelt",
     },
     {
       quote: "The power of imagination makes us infinite.",
@@ -201,7 +147,7 @@ const QuoteGenerator = () => {
     },
     {
       quote:
-        "I'm tellin' my bro don't quit. Put in the work and your time will come",
+        "I'm tellin' my bro don't quit. Put in the work and your time will come.",
       author: "Central Cee",
       source: "Tension",
     },

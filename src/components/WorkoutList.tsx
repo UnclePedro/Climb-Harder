@@ -7,6 +7,8 @@ import {
   workoutsByWeek,
 } from "../helpers/workoutStorageHelper";
 import { formatDateForDisplay, newId } from "../utils/helpers";
+import add from "/src/assets/iconography/add.svg";
+import Icon from "./Icon";
 
 interface Props {
   workouts: Workout[];
@@ -25,14 +27,14 @@ const WorkoutList = ({ workouts, onEditWorkout }: Props) => {
           Total training time:{" "}
           {totalWorkoutTime(filterWorkouts(workouts, trainingTypeFilter))} hours
         </p>
-        <div className="flex justify-end -mt-12 mr-4">
+        <div className="flex justify-end">
           <button
-            className="bg-amber-500 font-medium rounded-full w-10 h-10 ml-6 mt-3"
+            className="w-12 -mt-8 mr-1"
             onClick={() => {
               onEditWorkout(newId());
             }}
           >
-            +
+            <Icon iconImg={add} alt={"close"} />
           </button>
         </div>
         <div className="pb-2">
