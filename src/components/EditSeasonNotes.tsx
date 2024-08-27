@@ -45,7 +45,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   goals: element.target.value,
                 });
               }}
-              className="w-full h-[18vh] sm:h-52 bg-amber-200 rounded-lg shadow-mdv resize-y p-3"
+              className="w-full h-[18vh] sm:h-52 bg-amber-200 rounded-lg shadow-md resize-y p-3"
               value={seasonNotesData.goals}
             />
 
