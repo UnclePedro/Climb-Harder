@@ -28,6 +28,7 @@ export const deleteWorkout = (workoutId: string, currentSeason: Season) => {
   });
 };
 
+// Calculate total workout time from all workouts
 export const totalWorkoutTime = (workouts: Workout[]) => {
   return workouts
     .reduce((accumulator: number, { duration }) => {

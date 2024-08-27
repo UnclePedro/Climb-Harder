@@ -31,6 +31,7 @@ export const getSeason = (seasonId: string): Season => {
   return getSeasons().find((season) => season.id === seasonId) as Season;
 };
 
+// Called when user updates data within the season
 export const updateSeason = (updatedSeason: Season) => {
   const updatedSeasons = getSeasons().map((season) => {
     if (season.id === updatedSeason.id) {
@@ -40,6 +41,7 @@ export const updateSeason = (updatedSeason: Season) => {
   localStorage.setItem("seasons", JSON.stringify(updatedSeasons));
 };
 
+// Creates new blank season for the user
 export const addSeason = () => {
   const newSeason: Season = {
     id: newId(),

@@ -21,7 +21,7 @@ const EditWorkout = ({
   workouts,
   currentSeason,
 }: Props) => {
-  // Used to prefill new workout with last workout details
+  // Used to prefill new workout with last added or edited workout details
   const lastWorkout = workouts[workouts.length - 1] as Workout | undefined;
 
   const defaultWorkout: Workout = {
@@ -39,7 +39,7 @@ const EditWorkout = ({
       (existingWorkout: Workout) => existingWorkout.id === workoutId
     ) || defaultWorkout;
 
-  // Check if workout exists. If true, delete button is rendered
+  // Check if workout being edited exists. If true, delete button is rendered
   const isExistingWorkout = workouts.some(
     (existingWorkout: Workout) => existingWorkout.id === workoutId
   );
@@ -136,7 +136,7 @@ const EditWorkout = ({
                         date: dateTimestamp,
                       });
                     }}
-                    className="w-full sm:w-full h-11 bg-amber-200 rounded-lg shadow-md resize-y p-3"
+                    className="w-full sm:w-full h-11 bg-amber-200 rounded-lg drop-shadow-md resize-y p-3"
                     value={formatDateForInput(workoutData.date)} // Format the timestamp back to "YYYY-MM-DD" for display
                   />
                 </div>
