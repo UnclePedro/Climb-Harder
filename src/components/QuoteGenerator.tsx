@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const QuoteGenerator = () => {
   const quotesArray = [
     {
@@ -156,10 +154,9 @@ const QuoteGenerator = () => {
   const getRandomQuote = () => {
     const randomIndex = Math.floor(Math.random() * quotesArray.length);
     return quotesArray[randomIndex];
-    setQuote(getRandomQuote());
   };
 
-  const [quote, setQuote] = useState(getRandomQuote);
+  const quote = getRandomQuote();
 
   return (
     <>
