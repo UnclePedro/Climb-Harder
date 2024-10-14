@@ -61,7 +61,7 @@ export const getWeekNumber = (workouts: Workout[], workout: Workout) => {
   const weekNumber =
     Math.floor(
       (new Date(workout.date).getTime() - firstWorkoutDate.getTime()) /
-        (1000 * 60 * 60 * 24 * 6)
+        (1000 * 60 * 60 * 24 * 7)
     ) + 1;
   return `Week ${weekNumber}`;
 };
