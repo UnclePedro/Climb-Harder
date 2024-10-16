@@ -53,16 +53,17 @@ export const filterWorkouts = (
 
 // Calculate week number between first and subsequent workouts
 export const getWeekNumber = (workouts: Workout[], workout: Workout) => {
-  const firstWorkoutDate = new Date(
-    workouts.reduce((firstWorkout, currentWorkout) =>
-      currentWorkout.date < firstWorkout.date ? currentWorkout : firstWorkout
-    ).date
+  // Find the earliest workout and normalize its date to full days
+  const firstWorkoutDay = Math.floor(
+    Math.min(...workouts.map((workout) => workout.date)) / (1000 * 60 * 60 * 24)
   );
-  const weekNumber =
-    Math.floor(
-      (new Date(workout.date).getTime() - firstWorkoutDate.getTime()) /
-        (1000 * 60 * 60 * 24 * 7)
-    ) + 1;
+
+  // Normalize the current workout date to full days
+  const currentWorkoutDay = Math.floor(workout.date / (1000 * 60 * 60 * 24));
+
+  // Calculate the number of full 7-day periods between the workouts
+  const weekNumber = Math.floor((currentWorkoutDay - firstWorkoutDay) / 7) + 1;
+
   return `Week ${weekNumber}`;
 };
 
