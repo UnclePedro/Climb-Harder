@@ -19,7 +19,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
     <>
       <Fade>
         <div className="flex justify-center items-center">
-          <div className="p-3 sm:p-6 font-roboto h-11/12 w-11/12 sm:w-4/5 lg:w-1/2">
+          <div className="p-3 sm:p-6 font-roboto w-11/12 sm:w-4/5 xl:w-1/2">
             <div className="flex justify-end">
               <button className="w-12 mt-3 -mr-2" onClick={onClose}>
                 <Icon iconImg={close} alt={"close"} />
@@ -34,7 +34,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   trainingFocuses: element.target.value,
                 });
               }}
-              className="w-full h-[18vh] sm:h-52 bg-amber-200 rounded-lg shadow-md resize-y p-3"
+              className="w-full h-[22vh] sm:h-52 bg-amber-200 rounded-lg shadow-md resize-y p-3"
               value={seasonNotesData.trainingFocuses}
             />
             <p className="font-bold text-lg text-left mt-2">Goals</p>
@@ -45,7 +45,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   goals: element.target.value,
                 });
               }}
-              className="w-full h-[18vh] sm:h-52 bg-amber-200 rounded-lg shadow-md resize-y p-3"
+              className="w-full h-[22vh] sm:h-52 bg-amber-200 rounded-lg shadow-md resize-y p-3"
               value={seasonNotesData.goals}
             />
 
@@ -57,7 +57,7 @@ const EditSeasonNotes = ({ onClose, seasonNotes, currentSeason }: Props) => {
                   achievements: element.target.value,
                 });
               }}
-              className="w-full h-[18vh] sm:h-52  bg-amber-200 rounded-lg shadow-md resize-y p-3"
+              className="w-full h-[22vh] sm:h-52  bg-amber-200 rounded-lg shadow-md resize-y p-3"
               value={seasonNotesData.achievements}
             />
             <button

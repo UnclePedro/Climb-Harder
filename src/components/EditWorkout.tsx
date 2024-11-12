@@ -52,7 +52,7 @@ const EditWorkout = ({
     <>
       <Fade>
         <div className="flex justify-center items-center">
-          <div className="p-3 sm:p-6 font-roboto w-11/12 sm:w-4/5 lg:w-1/2">
+          <div className="p-3 sm:p-6 font-roboto w-11/12 sm:w-4/5 xl:w-1/2">
             <div className="flex justify-end">
               <button className="w-12 mt-3 -mr-2" onClick={onClose}>
                 <Icon iconImg={close} alt={"close"} />
@@ -67,7 +67,7 @@ const EditWorkout = ({
                     name: element.target.value,
                   });
                 }}
-                className="w-full h-11  bg-amber-200 rounded-lg shadow-md p-3"
+                className="w-full h-[5vh]  bg-amber-200 rounded-lg shadow-md p-3"
                 value={workoutData.name}
                 maxLength={30}
               />
@@ -77,7 +77,7 @@ const EditWorkout = ({
                 name="training-type"
                 id="training-type"
                 value={workoutData.trainingType}
-                className="w-full h-11 bg-amber-200 rounded-lg drop-shadow-md resize-y px-3"
+                className="w-full h-[5vh] bg-amber-200 rounded-lg drop-shadow-md resize-y px-3"
                 onChange={(element) => {
                   setWorkoutData({
                     ...workoutData,
@@ -102,7 +102,7 @@ const EditWorkout = ({
                     details: element.target.value,
                   });
                 }}
-                className="w-full h-[34vh] sm:h-80 bg-amber-200 rounded-lg shadow-md resize-y p-3"
+                className="w-full h-[40vh] bg-amber-200 rounded-lg shadow-md resize-y p-3"
                 value={workoutData.details}
               />
 
@@ -118,7 +118,7 @@ const EditWorkout = ({
                     duration: updatedDuration,
                   });
                 }}
-                className="w-full h-11 bg-amber-200 rounded-lg shadow-md resize-y p-3"
+                className="w-full h-[5vh] bg-amber-200 rounded-lg shadow-md resize-y p-3"
                 value={workoutData.duration}
               />
 
@@ -136,7 +136,7 @@ const EditWorkout = ({
                         date: dateTimestamp,
                       });
                     }}
-                    className="w-full sm:w-full h-11 bg-amber-200 rounded-lg shadow-md resize-y p-3"
+                    className="w-full sm:w-full h-[5vh] bg-amber-200 rounded-lg shadow-md resize-y p-3"
                     value={formatDateForInput(workoutData.date)} // Format the timestamp back to "YYYY-MM-DD" for display
                   />
                 </div>
